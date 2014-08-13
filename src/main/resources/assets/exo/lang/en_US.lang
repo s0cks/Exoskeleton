@@ -11,6 +11,7 @@ item.exo.itemCore.recon.name=Recon Core
 item.exo.itemCore.reflex.name=Reflex Core
 item.exo.itemCore.skybound.name=Skybound Core
 item.exo.itemCore.empty.name=Empty Core
+item.exo.itemCore.intro.name=Intro Core
 
 item.exo.itemExoBoots.name=Exoskeleton Boots
 item.exo.itemExoChest.name=Exoskeleton Chestplate

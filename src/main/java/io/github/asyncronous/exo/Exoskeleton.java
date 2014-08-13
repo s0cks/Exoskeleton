@@ -15,6 +15,7 @@ import io.github.asyncronous.exo.core.CoreEmpty;
 import io.github.asyncronous.exo.core.CoreFrost;
 import io.github.asyncronous.exo.core.CoreGhost;
 import io.github.asyncronous.exo.core.CoreInfernal;
+import io.github.asyncronous.exo.core.CoreIntro;
 import io.github.asyncronous.exo.core.CoreMystic;
 import io.github.asyncronous.exo.core.CoreRecon;
 import io.github.asyncronous.exo.core.CoreReflex;
@@ -49,6 +50,7 @@ public final class Exoskeleton{
     public static final Item itemCoreReflex = new ItemCore(new CoreReflex());
     public static final Item itemCoreSkybound = new ItemCore(new CoreSkybound());
     public static final Item itemCoreEmpty = new ItemCore(new CoreEmpty());
+    public static final Item itemCoreIntro = new ItemCore(new CoreIntro());
 
     // Armour pieces
     public static final Item itemExoskeletonHelmet = new ItemExoskeletonHelmet();
@@ -74,6 +76,7 @@ public final class Exoskeleton{
         GameRegistry.registerItem(itemCoreReflex, "itemCoreReflex");
         GameRegistry.registerItem(itemCoreSkybound, "itemCoreSkybound");
         GameRegistry.registerItem(itemCoreEmpty, "itemCoreEmpty");
+        GameRegistry.registerItem(itemCoreIntro, "itemCoreIntro");
 
         GameRegistry.registerItem(itemExoskeletonHelmet, "itemExoskeletonHelmet");
         GameRegistry.registerItem(itemExoskeletonChestplate, "itemExoskeletonChestplate");
