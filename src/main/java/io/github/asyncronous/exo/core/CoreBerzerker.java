@@ -1,9 +1,17 @@
 package io.github.asyncronous.exo.core;
 
+import net.minecraft.nbt.NBTTagCompound;
+
+import io.github.asyncronous.exo.item.ItemExoskeletonArmor;
+
 public final class CoreBerzerker
-implements ICore{
+extends AbstractCore{
+    public CoreBerzerker(){
+        super("berzerker");
+    }
+
     @Override
-    public String getName(){
-        return "berzerker";
+    public void write(NBTTagCompound comp, ItemExoskeletonArmor armor){
+
     }
 }

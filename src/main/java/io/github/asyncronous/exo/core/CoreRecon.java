@@ -1,9 +1,17 @@
 package io.github.asyncronous.exo.core;
 
+import net.minecraft.nbt.NBTTagCompound;
+
+import io.github.asyncronous.exo.item.ItemExoskeletonArmor;
+
 public final class CoreRecon
-implements ICore{
+extends AbstractCore{
+    public CoreRecon(){
+        super("recon");
+    }
+
     @Override
-    public String getName(){
-        return "recon";
+    public void write(NBTTagCompound comp, ItemExoskeletonArmor armor){
+
     }
 }

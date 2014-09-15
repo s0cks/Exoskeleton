@@ -1,9 +1,17 @@
 package io.github.asyncronous.exo.core;
 
+import net.minecraft.nbt.NBTTagCompound;
+
+import io.github.asyncronous.exo.item.ItemExoskeletonArmor;
+
 public final class CoreMystic
-implements ICore{
+extends AbstractCore{
+    public CoreMystic(){
+        super("mystic");
+    }
+
     @Override
-    public String getName(){
-        return "mystic";
+    public void write(NBTTagCompound comp, ItemExoskeletonArmor armor){
+
     }
 }
