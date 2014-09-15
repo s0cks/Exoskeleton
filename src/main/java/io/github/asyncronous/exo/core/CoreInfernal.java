@@ -12,6 +12,9 @@ extends AbstractCore{
 
     @Override
     public void write(NBTTagCompound comp, ItemExoskeletonArmor armor){
-
+        if(armor.chest()){
+            comp.setString("coreName", "infernal");
+            comp.setBoolean("fireImmunity", true);
+        }
     }
 }

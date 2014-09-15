@@ -12,11 +12,12 @@ import net.minecraftforge.common.MinecraftForge;
 
 import io.github.asyncronous.exo.block.BlockTest;
 import io.github.asyncronous.exo.handler.EXOToolTipHandler;
-import io.github.asyncronous.exo.handler.ReflexCoreHandler;
+import io.github.asyncronous.exo.handler.ReconCoreHandler;
 import io.github.asyncronous.exo.item.ItemExoskeletonBoots;
 import io.github.asyncronous.exo.item.ItemExoskeletonChestplate;
 import io.github.asyncronous.exo.item.ItemExoskeletonHelmet;
 import io.github.asyncronous.exo.item.ItemExoskeletonLeggings;
+import io.github.asyncronous.exo.tile.TileTestBlock;
 
 @Mod(modid = "EXO", version = "0.0.0", name = "Exoskeleton")
 public final class Exoskeleton{
@@ -61,6 +62,8 @@ public final class Exoskeleton{
     public void onInit(FMLInitializationEvent e){
         GameRegistry.registerBlock(blockTest, "blockTest");
 
+        GameRegistry.registerTileEntity(TileTestBlock.class, "tileTestBlock");
+
         GameRegistry.registerItem(itemCoreAssassin, "itemCoreAssassin");
         GameRegistry.registerItem(itemCoreBerzerker, "itemCoreBerzerker");
         GameRegistry.registerItem(itemCoreBulldozer, "itemCoreBulldozer");
@@ -82,7 +85,7 @@ public final class Exoskeleton{
 
     @Mod.EventHandler
     public void onPostInit(FMLPostInitializationEvent e){
+        MinecraftForge.EVENT_BUS.register(new ReconCoreHandler());
         MinecraftForge.EVENT_BUS.register(new EXOToolTipHandler());
-        MinecraftForge.EVENT_BUS.register(new ReflexCoreHandler());
     }
 }

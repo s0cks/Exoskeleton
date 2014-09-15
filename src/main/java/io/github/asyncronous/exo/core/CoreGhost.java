@@ -12,6 +12,9 @@ extends AbstractCore{
 
     @Override
     public void write(NBTTagCompound comp, ItemExoskeletonArmor armor){
-
+        if(armor.chest()){
+            comp.setBoolean("invisNight", true);
+            comp.setString("coreName", "Ghost");
+        }
     }
 }
