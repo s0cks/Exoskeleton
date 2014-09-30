@@ -4,8 +4,8 @@ import cpw.mods.fml.common.network.NetworkRegistry
 import cpw.mods.fml.common.{SidedProxy, Mod}
 import cpw.mods.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
 import io.github.asyncronous.exoskeleton.api.ExoskeletonCores
-import io.github.asyncronous.exoskeleton.core.CoreRecon
-import io.github.asyncronous.exoskeleton.handler.CoreHandler
+import io.github.asyncronous.exoskeleton.core.{CoreBulldozer, CoreRecon}
+import io.github.asyncronous.exoskeleton.handler.{ExoToolTipHandler, CoreHandler}
 import io.github.asyncronous.exoskeleton.proxy.CommonProxy
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Items
@@ -34,6 +34,7 @@ object Exoskeleton{
   @Mod.EventHandler
   def preInit(e: FMLPreInitializationEvent): Unit ={
     MinecraftForge.EVENT_BUS.register(CoreHandler);
+    MinecraftForge.EVENT_BUS.register(ExoToolTipHandler);
   }
 
   @Mod.EventHandler
@@ -45,6 +46,8 @@ object Exoskeleton{
   @Mod.EventHandler
   def postInit(e: FMLPostInitializationEvent): Unit ={
     ExoskeletonCores.registerCore(CoreRecon);
+    ExoskeletonCores.registerCore(CoreBulldozer);
+
     proxy.registerHandlers();
     proxy.registerRenders();
     proxy.registerTiles();

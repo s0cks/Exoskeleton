@@ -3,7 +3,7 @@ package io.github.asyncronous.exoskeleton.tile
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.inventory.IInventory
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import net.minecraft.nbt.{NBTTagList, NBTTagCompound}
 import net.minecraft.tileentity.TileEntity
 
 class TileEntityToolbox
@@ -12,11 +12,26 @@ with IInventory{
   var inventory: Array[ItemStack] = new Array[ItemStack](10);
 
   override def readFromNBT(comp: NBTTagCompound): Unit ={
-
+    super.readFromNBT(comp);
+    val tags: NBTTagList = comp.getTagList("Items", 10);
+    for(i: Int <- 0 until tags.tagCount()){
+      val c: NBTTagCompound = tags.getCompoundTagAt(i);
+      this.inventory(c.getByte("Slot")) = ItemStack.loadItemStackFromNBT(c);
+    }
   }
 
   override def writeToNBT(comp: NBTTagCompound): Unit ={
-
+    super.writeToNBT(comp);
+    val tags: NBTTagList = new NBTTagList();
+    for(i: Int <- 0 until this.inventory.length){
+      if(this.inventory(i) != null){
+        val c: NBTTagCompound = new NBTTagCompound();
+        c.setByte("Slot", i.asInstanceOf[Byte]);
+        this.inventory(i).writeToNBT(c);
+        tags.appendTag(c);
+      }
+    }
+    comp.setTag("Items", tags);
   }
 
   override def getSizeInventory: Int ={

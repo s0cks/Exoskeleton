@@ -20,7 +20,7 @@ extends Block(Material.iron) {
       stack.getItem().isInstanceOf[ItemExoArmor]){
 
       val comp: NBTTagCompound = ExoskeletonTag.getTag(stack);
-      comp.setString("coreName", "recon");
+      comp.setString("coreName", "bulldozer");
     }
 
     return true;
