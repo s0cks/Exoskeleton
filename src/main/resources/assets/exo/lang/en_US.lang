@@ -1,0 +1,10 @@
+# Items
+item.core.recon.name=Recon Core
+item.core.entry.name=Entry Core
+
+item.exo.helm.name=Exoskeleton Helmet
+item.exo.chest.name=Exoskeleton Chestplate
+item.exo.legs.name=Exoskeleton Leggings
+item.exo.boots.name=Exoskeleton Boots
+
+# Blocks
