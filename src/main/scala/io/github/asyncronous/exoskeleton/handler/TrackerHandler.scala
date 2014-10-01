@@ -6,6 +6,8 @@ import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing
 
 object TrackerHandler{
+  val RECON: String = "exoRecon";
+
   @SubscribeEvent
   def onConstruction(e: EntityConstructing): Unit ={
     if(e.entity.isInstanceOf[EntityPlayerMP]){

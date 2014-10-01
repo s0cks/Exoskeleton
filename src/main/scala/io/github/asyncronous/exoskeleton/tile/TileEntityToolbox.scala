@@ -10,9 +10,11 @@ class TileEntityToolbox
 extends TileEntity
 with IInventory{
   var inventory: Array[ItemStack] = new Array[ItemStack](10);
+  var rotation: Float = 0.0F;
 
   override def readFromNBT(comp: NBTTagCompound): Unit ={
     super.readFromNBT(comp);
+    this.rotation = comp.getFloat("rotation");
     val tags: NBTTagList = comp.getTagList("Items", 10);
     for(i: Int <- 0 until tags.tagCount()){
       val c: NBTTagCompound = tags.getCompoundTagAt(i);
@@ -22,6 +24,7 @@ with IInventory{
 
   override def writeToNBT(comp: NBTTagCompound): Unit ={
     super.writeToNBT(comp);
+    comp.setFloat("rotation", this.rotation);
     val tags: NBTTagList = new NBTTagList();
     for(i: Int <- 0 until this.inventory.length){
       if(this.inventory(i) != null){

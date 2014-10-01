@@ -4,6 +4,7 @@ import java.util.Random
 
 import io.github.asyncronous.exoskeleton.Exoskeleton
 import io.github.asyncronous.exoskeleton.api.Toolbox
+import io.github.asyncronous.exoskeleton.helper.RotationHelper
 import io.github.asyncronous.exoskeleton.tile.TileEntityToolbox
 import net.minecraft.block.BlockContainer
 import net.minecraft.block.material.Material
@@ -38,6 +39,7 @@ extends BlockContainer(Material.iron){
     val tile: TileEntityToolbox = world.getTileEntity(x, y, z).asInstanceOf[TileEntityToolbox];
     val tbox: Toolbox = stack.getItem().asInstanceOf[Toolbox];
     tile.inventory = tbox.getInventory(stack);
+    tile.rotation = RotationHelper.get3DRotation(living);
   }
 
   override def removedByPlayer(world: World, player: EntityPlayer, x: Int, y: Int, z: Int, harvest: Boolean): Boolean={

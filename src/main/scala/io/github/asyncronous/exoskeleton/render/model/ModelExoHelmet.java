@@ -72,8 +72,8 @@ extends ModelBiped{
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float scale){
-        this.prep();
         super.render(entity, f, f1, f2, f3, f4, scale);
+        super.setRotationAngles(f, f1, f2, f3, f4, scale, entity);
     }
 
     private void prep(){

@@ -1,5 +1,6 @@
 package io.github.asyncronous.exoskeleton.render
 
+import io.github.asyncronous.exoskeleton.tile.TileEntityToolbox
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
 import net.minecraft.item.ItemStack
 import net.minecraft.tileentity.TileEntity
@@ -17,9 +18,11 @@ with IItemRenderer{
 
   override def renderTileEntityAt(tile: TileEntity, x: Double, y: Double, z: Double, scale: Float): Unit ={
     this.bindTexture(this.texture);
+    val t: TileEntityToolbox = tile.asInstanceOf[TileEntityToolbox];
     GL11.glPushMatrix();
-    GL11.glTranslated(x + 0.5, y, z + 0.5);
+    GL11.glTranslated(x + 0.5, y + 0.05, z + 0.5);
     GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
+    GL11.glRotatef(t.rotation, 0.0F, 1.0F, 0.0F);
     GL11.glScalef(0.05F, 0.05F, 0.05F);
     this.model.renderAll();
     GL11.glPopMatrix();

@@ -2,7 +2,6 @@ package io.github.asyncronous.exoskeleton.render.model;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 
 public class ModelExoBoots extends ModelBiped{
     ModelRenderer jointR;
@@ -73,17 +72,6 @@ public class ModelExoBoots extends ModelBiped{
         braceL.setTextureSize(128, 64);
         braceL.mirror = true;
         setRotation(braceL, 0F, 0F, 0F);
-    }
-
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float scale){
-        jointR.render(scale);
-        footR.render(scale);
-        jointL.render(scale);
-        braceR.render(scale);
-        footL.render(scale);
-        padL.render(scale);
-        padR.render(scale);
-        braceL.render(scale);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z){
