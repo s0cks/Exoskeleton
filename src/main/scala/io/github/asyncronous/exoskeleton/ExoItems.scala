@@ -17,5 +17,6 @@ object ExoItems{
     GameRegistry.registerItem(this.itemCoreRecon, "itemCoreRecon");
 
     GameRegistry.registerItem(this.itemExoArmorBoots, "itemExoArmorBoots");
+    GameRegistry.registerItem(this.itemExoArmorChest, "itemExoArmorChest");
   }
 }
