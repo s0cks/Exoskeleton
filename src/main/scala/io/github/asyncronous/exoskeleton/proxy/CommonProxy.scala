@@ -25,7 +25,6 @@ extends CommonProxy{
     val toolboxRenderer: ToolboxRenderer = new ToolboxRenderer(toolboxId);
     BlockToolbox.setRenderID(toolboxId);
     ClientRegistry.bindTileEntitySpecialRenderer(classOf[TileEntityToolbox], toolboxRenderer);
-    RenderingRegistry.registerBlockHandler(toolboxRenderer);
     MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockToolbox), toolboxRenderer);
   }
 }
