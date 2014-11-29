@@ -8,3 +8,7 @@ item.exo.legs.name=Exoskeleton Leggings
 item.exo.boots.name=Exoskeleton Boots
 
 # Blocks
+tile.debug.name=Debug
+tile.modifier.name=Modifier
+tile.assembler.name=Assembler
+tile.toolbox.name=Toolbox
