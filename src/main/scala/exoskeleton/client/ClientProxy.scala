@@ -1,22 +1,17 @@
 package exoskeleton.client
 
+import cpw.mods.fml.client.FMLClientHandler
 import cpw.mods.fml.client.registry.{ClientRegistry, RenderingRegistry}
-import cpw.mods.fml.common.registry.GameRegistry
+import exoskeleton.client.render.{AssemblerRenderer, ToolboxRenderer}
 import exoskeleton.common.CommonProxy
 import exoskeleton.common.block.{BlockAssembler, BlockToolbox}
-import exoskeleton.client.render.{AssemblerRenderer, ToolboxRenderer}
-import exoskeleton.common.tile.{TileEntityAssembler, TileEntityModifier, TileEntityToolbox}
+import exoskeleton.common.tile.{TileEntityAssembler, TileEntityToolbox}
 import net.minecraft.item.Item
+import net.minecraft.world.World
 import net.minecraftforge.client.MinecraftForgeClient
 
 class ClientProxy
 extends CommonProxy{
-  override def registerTiles(): Unit ={
-    GameRegistry.registerTileEntity(classOf[TileEntityToolbox], "tileToolbox");
-    GameRegistry.registerTileEntity(classOf[TileEntityAssembler], "tileEntityAssembler");
-    GameRegistry.registerTileEntity(classOf[TileEntityModifier], "tileEntityModifier");
-  }
-
   override def registerRenders(): Unit ={
     val tboxId = RenderingRegistry.getNextAvailableRenderId();
     val tboxR = new ToolboxRenderer(tboxId);
@@ -30,5 +25,9 @@ extends CommonProxy{
     BlockAssembler.setRenderID(assemblerId);
     ClientRegistry.bindTileEntitySpecialRenderer(classOf[TileEntityAssembler], assemblerR);
     RenderingRegistry.registerBlockHandler(assemblerR);
+  }
+
+  override def getClientWorld(): World={
+    return FMLClientHandler.instance().getClient.theWorld;
   }
 }

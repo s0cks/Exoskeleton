@@ -1,20 +1,25 @@
 package exoskeleton.common.core
 
+import java.util.Random
+
 import exoskeleton.api.Tree
-import exoskeleton.common.lib.tree.TreeBulldozer
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.DamageSource
 import net.minecraftforge.event.entity.living.LivingAttackEvent
 
-object CoreBulldozer
-extends AbstractCore("bulldozer"){
-  override def onJump(player: EntityPlayer): Unit ={
+object CoreGhost
+extends AbstractCore("ghost"){
+  private val rand = new Random();
 
+  override def getTree(): Tree ={
+    return null;
   }
 
   override def onAttacked(e: LivingAttackEvent, player: EntityPlayer, source: DamageSource): Unit ={
-
+    if(this.rand.nextInt(10) == 1){
+      e.setCanceled(true);
+    }
   }
 
   override def onUpdate(player: EntityPlayer): Unit ={
@@ -22,14 +27,14 @@ extends AbstractCore("bulldozer"){
   }
 
   override def getBreakSpeedModifier(player: EntityPlayer, b: Block, meta: Int, oldSpeed: Float): Float ={
-    return oldSpeed * 2.0F;
+    return oldSpeed;
   }
 
   override def onHud(player: EntityPlayer): Unit ={
 
   }
 
-  override def getTree(): Tree ={
-    return new TreeBulldozer();
+  override def onJump(player: EntityPlayer): Unit ={
+
   }
 }

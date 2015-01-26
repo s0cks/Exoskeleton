@@ -6,9 +6,9 @@ import exoskeleton.common.lib.ArmorHelper
 import exoskeleton.common.lib.skills.PlayerSkills
 import exoskeleton.common.lib.tree.TreeRecon
 import net.minecraft.block.Block
+import net.minecraft.block.material.Material
 import net.minecraft.client.gui.FontRenderer
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.potion.{Potion, PotionEffect}
 import net.minecraft.util.DamageSource
 import net.minecraftforge.event.entity.living.LivingAttackEvent
 import org.lwjgl.opengl.GL11
@@ -17,7 +17,7 @@ object CoreRecon
 extends AbstractCore("recon"){
   override def onJump(player: EntityPlayer): Unit ={
     if(PlayerSkills.get(player).hasSkill("recon", "jumpBoost") && ArmorHelper.hasExoLegs(player)){
-      player.motionY += 0.2D;
+      player.motionY += 0.04;;
     }
   }
 
@@ -26,7 +26,7 @@ extends AbstractCore("recon"){
   }
 
   override def onAttacked(e: LivingAttackEvent, player: EntityPlayer, source: DamageSource): Unit ={
-    if(PlayerSkills.get(player).hasSkill("recon", "noDrown") && ArmorHelper.hasExoHelm(player)){
+    if(hasSkill(player, "noDrown") && ArmorHelper.hasExoHelm(player)){
       if(e.source == DamageSource.drown){
         e.setCanceled(true);
       }
@@ -34,8 +34,24 @@ extends AbstractCore("recon"){
   }
 
   override def onUpdate(player: EntityPlayer): Unit ={
-    if(PlayerSkills.get(player).hasSkill("recon", "nightVision") && ArmorHelper.hasExoHelm(player)){
-      player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 400));
+    if(hasSkill(player, "breastStroke") && ArmorHelper.hasExoChest(player)){
+      if(player.isInsideOfMaterial(Material.water) && player.moveForward > 0.0F){
+        player.moveFlying(0.0F, 1.0F, 0.008F * 2);
+      }
+    }
+
+    if(hasSkill(player, "speedyLegs") && ArmorHelper.hasExoLegs(player) && player.moveForward > 0.0F){
+      player.moveFlying(0.0F, 1.0F, 0.016F * 2);
+    }
+
+    if(hasSkill(player, "stepUp") && ArmorHelper.hasExoBoots(player)){
+      if(player.isSneaking()){
+        player.stepHeight = 0.50001F;
+      } else if(player.stepHeight == 0.50001F){
+        player.stepHeight = 1.0F;
+      }
+    } else{
+      player.stepHeight = 0.5F;
     }
   }
 
@@ -44,7 +60,7 @@ extends AbstractCore("recon"){
   }
 
   override def onHud(player: EntityPlayer): Unit ={
-    if(PlayerSkills.get(player).hasSkill("recon", "debug") && ArmorHelper.hasExoHelm(player) && FMLClientHandler.instance().getClient.inGameHasFocus){
+    if(hasSkill(player, "debug") && ArmorHelper.hasExoHelm(player) && FMLClientHandler.instance().getClient.inGameHasFocus){
       GL11.glPopMatrix();
 
       val fRenderer: FontRenderer = FMLClientHandler.instance().getClient.fontRenderer;

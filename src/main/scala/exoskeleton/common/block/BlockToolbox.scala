@@ -1,7 +1,8 @@
 package exoskeleton.common.block
 
 import java.util.Random
-import exoskeleton.common.{Toolbox, Exoskeleton}
+import exoskeleton.api.Toolbox
+import exoskeleton.common.Exoskeleton
 import exoskeleton.common.lib.RotationHelper
 import exoskeleton.common.tile.TileEntityToolbox
 import net.minecraft.block.BlockContainer

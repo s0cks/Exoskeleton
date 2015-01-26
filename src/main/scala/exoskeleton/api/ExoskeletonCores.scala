@@ -33,6 +33,10 @@ object ExoskeletonCores{
     return null;
   }
 
+  def hasCore(stack: ItemStack): Boolean={
+    return this.findCore(stack) != null;
+  }
+
   def findTree(stack: ItemStack): Tree={
     if(stack.hasTagCompound() &&
        stack.getTagCompound.hasKey(ExoskeletonTag.IDENTIFIER)){

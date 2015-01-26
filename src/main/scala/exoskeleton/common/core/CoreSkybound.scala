@@ -1,0 +1,37 @@
+package exoskeleton.common.core
+
+import exoskeleton.api.Tree
+import exoskeleton.common.lib.ArmorHelper
+import net.minecraft.block.Block
+import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.util.DamageSource
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+
+object CoreSkybound
+extends AbstractCore("skybound"){
+  override def getTree(): Tree ={
+    return null;
+  }
+
+  override def onAttacked(e: LivingAttackEvent, player: EntityPlayer, source: DamageSource): Unit ={
+
+  }
+
+  override def onUpdate(player: EntityPlayer): Unit ={
+    if(this.hasSkill(player, "flight") && ArmorHelper.hasExoChest(player)){
+      player.capabilities.allowFlying = true;
+    }
+  }
+
+  override def getBreakSpeedModifier(player: EntityPlayer, b: Block, meta: Int, oldSpeed: Float): Float ={
+    return oldSpeed;
+  }
+
+  override def onHud(player: EntityPlayer): Unit ={
+
+  }
+
+  override def onJump(player: EntityPlayer): Unit ={
+
+  }
+}

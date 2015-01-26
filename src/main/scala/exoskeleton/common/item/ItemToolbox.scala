@@ -1,7 +1,7 @@
 package exoskeleton.common.item
 
-import exoskeleton.api.ExoskeletonTag
-import exoskeleton.common.{Toolbox, Exoskeleton}
+import exoskeleton.api.{Toolbox, ExoskeletonTag}
+import exoskeleton.common.Exoskeleton
 import net.minecraft.block.Block
 import net.minecraft.item.{ItemBlock, ItemStack}
 import net.minecraft.nbt.{NBTTagCompound, NBTTagList}

@@ -1,4 +1,4 @@
-package exoskeleton.common
+package exoskeleton.api
 
 import net.minecraft.item.ItemStack
 

@@ -19,10 +19,11 @@ extends Block(Material.iron) {
     val stack: ItemStack = player.getCurrentEquippedItem();
 
     if(stack != null &&
-      stack.getItem().isInstanceOf[ItemExoArmor]){
+       stack.getItem().isInstanceOf[ItemExoArmor]){
 
       val comp: NBTTagCompound = ExoskeletonTag.getTag(stack);
-      comp.setString("coreName", "recon");
+      comp.setString("coreName", "reflex");;
+
     } else{
       player.openGui(Exoskeleton, 3, world, x, y, z);
     }

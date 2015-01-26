@@ -47,6 +47,7 @@ public final class SkillsManager{
                 try{
                     FileInputStream fis = new FileInputStream(file);
                     comp = CompressedStreamTools.readCompressed(fis);
+                    fis.close();
                 } catch(Exception e){
                     e.printStackTrace();
                 }

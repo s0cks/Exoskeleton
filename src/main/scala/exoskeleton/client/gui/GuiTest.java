@@ -2,6 +2,7 @@ package exoskeleton.client.gui;
 
 import exoskeleton.api.Skill;
 import exoskeleton.api.Tree;
+import exoskeleton.common.lib.skills.PlayerSkills;
 import exoskeleton.common.lib.skills.SkillsManager;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
@@ -19,9 +20,29 @@ extends GuiScreen{
     }
 
     @Override
-    public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_){
+    public void drawScreen(int x, int y, float par3){
+        super.drawScreen(x, y, par3);
         this.drawDefaultBackground();
-        this.drawString(this.mc.fontRenderer, this.tree.name, (this.width / 2) - this.tree.name.length(), 0, 0xFFFFFF);
+        this.drawString(this.mc.fontRenderer, this.tree.name, (this.width - this.fontRendererObj.getStringWidth(this.tree.name)) / 2, 0, 0xFFFFFF);
+
+        for(Skill skill : this.tree.skills){
+            if(skill.parents != null){
+                for(Skill s : skill.parents){
+                    if(SkillsManager.unlocked(player, tree, s) && SkillsManager.unlocked(player, tree, skill)){
+                        bindColor(0xFFFFFF);
+                    } else if(SkillsManager.unlocked(player, tree, s) && !SkillsManager.unlocked(player, tree, skill)){
+                        bindColor(0xFFFFFF);
+                    } else if(!SkillsManager.unlocked(player, tree, s) && SkillsManager.unlocked(player, tree, skill)){
+                        bindColor(0xFFFFFF);
+                    } else{
+                        bindColor(0x000000);
+                    }
+
+                    this.drawLine(s.x, s.y, skill.x, skill.y);
+                }
+            }
+        }
+
         for(Skill skill : this.tree.skills){
             this.mc.renderEngine.bindTexture(tree.marker);
             this.tree.bindColor();
@@ -34,6 +55,95 @@ extends GuiScreen{
 
             this.drawPoint(skill.x + 100, skill.y + 100);
         }
+
+        Skill skill = this.find(x, y);
+        if(skill != null){
+            int width = this.fontRendererObj.getStringWidth(skill.tag);
+            drawColoredQuad(0x000000, 255, x + 10, y, width + 10, this.fontRendererObj.FONT_HEIGHT);
+            this.fontRendererObj.drawString(skill.tag, x + 15, y, 0xFFFFFF);
+        }
+    }
+
+    private boolean canUnlock(Skill s){
+        if(s.parents != null){
+            for(Skill skill : s.parents){
+                if(!SkillsManager.unlocked(player, tree, skill)){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private void drawLine(int x1, int y1, int x2, int y2) {
+        GL11.glPushMatrix();
+
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+
+        GL11.glLineWidth(3);
+
+        GL11.glBegin(GL11.GL_LINES);
+        GL11.glVertex3f(108 + x1, 108 + y1, this.zLevel);
+        GL11.glVertex3f(108 + x2, 108 + y2, this.zLevel);
+        GL11.glEnd();
+
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glColor4f(1F, 1F, 1F, 1F);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glPopMatrix();
+    }
+
+    private void bindColor(int color){
+        int r = (color >> 16 & 0xFF);
+        int g = (color >> 8 & 0xFF);
+        int b = (color & 0xFF);
+
+        GL11.glColor3f(r / 255, g / 255, b / 255);
+    }
+
+    private void drawColoredQuad(int color, int alpha, double x, double y, double width, double height){
+        Tessellator tess = Tessellator.instance;
+        tess.startDrawingQuads();
+
+        int r = (color >> 16 & 0xFF);
+        int g = (color >> 8 & 0xFF);
+        int b = (color & 0xFF);
+
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        tess.setColorRGBA(r, g, b, alpha);
+        tess.addVertex(x, y + height, this.zLevel);
+        tess.addVertex(x + width, y + height, this.zLevel);
+        tess.addVertex(x + width, y, this.zLevel);
+        tess.addVertex(x, y, this.zLevel);
+        tess.draw();
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+    }
+
+    @Override
+    public void mouseClicked(int x, int y, int button){
+        super.mouseClicked(x, y, button);
+        Skill skill = this.find(x, y);
+        if(skill != null && button == 0){
+            if(!SkillsManager.unlocked(player, tree, skill) && canUnlock(skill)){
+                PlayerSkills.get(player).addSkill(tree.name.toLowerCase(), skill.tag);
+            }
+        }
+    }
+
+    private Skill find(int x, int y){
+        for(Skill skill : this.tree.skills){
+            if(inBounds(skill.x + 100, skill.y + 100, 16, 16, x, y)){
+                return skill;
+            }
+        }
+
+        return null;
+    }
+
+    private boolean inBounds(int x, int y, int width, int height, int mX, int mY){
+        return x <= mX && mX <= x + width &&
+               y <= mY && mY <= y + height;
     }
 
     private void drawPoint(int x, int y){
