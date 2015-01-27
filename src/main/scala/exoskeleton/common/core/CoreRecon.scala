@@ -1,17 +1,15 @@
 package exoskeleton.common.core
 
-import cpw.mods.fml.client.FMLClientHandler
 import exoskeleton.api.Tree
 import exoskeleton.common.lib.ArmorHelper
 import exoskeleton.common.lib.skills.PlayerSkills
 import exoskeleton.common.lib.tree.TreeRecon
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
-import net.minecraft.client.gui.FontRenderer
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.DamageSource
 import net.minecraftforge.event.entity.living.LivingAttackEvent
-import org.lwjgl.opengl.GL11
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent
 
 object CoreRecon
 extends AbstractCore("recon"){
@@ -22,7 +20,7 @@ extends AbstractCore("recon"){
   }
 
   override def getTree(): Tree={
-    return new TreeRecon();
+    return TreeRecon;;
   }
 
   override def onAttacked(e: LivingAttackEvent, player: EntityPlayer, source: DamageSource): Unit ={
@@ -60,15 +58,10 @@ extends AbstractCore("recon"){
   }
 
   override def onHud(player: EntityPlayer): Unit ={
-    if(hasSkill(player, "debug") && ArmorHelper.hasExoHelm(player) && FMLClientHandler.instance().getClient.inGameHasFocus){
-      GL11.glPopMatrix();
 
-      val fRenderer: FontRenderer = FMLClientHandler.instance().getClient.fontRenderer;
-      fRenderer.drawString("Jump Boost: " + PlayerSkills.get(player).hasSkill("recon", "jumpBoost"), 0, 0, 0x000000);
-      fRenderer.drawString("Night Vision: " + PlayerSkills.get(player).hasSkill("recon", "nightVision"), 0, 10, 0x000000);
-      fRenderer.drawString("No Drowning: " + PlayerSkills.get(player).hasSkill("recon", "noDrown"), 0, 20, 0x000000);
+  }
 
-      GL11.glPushMatrix();
-    }
+  override def onHarvest(e: HarvestDropsEvent): Unit ={
+
   }
 }

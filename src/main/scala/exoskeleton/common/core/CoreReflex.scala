@@ -3,12 +3,11 @@ package exoskeleton.common.core
 import java.util.Random
 
 import exoskeleton.api.Tree
-import exoskeleton.client.MotorBlock
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.DamageSource
 import net.minecraftforge.event.entity.living.LivingAttackEvent
-import org.lwjgl.opengl.GL11
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent
 
 object CoreReflex
 extends AbstractCore("reflex"){
@@ -31,14 +30,14 @@ extends AbstractCore("reflex"){
   }
 
   override def onHud(player: EntityPlayer): Unit ={
-    GL11.glPopMatrix();
 
-    MotorBlock.drawString("Reflex", 0, 20, 3.0F);
-
-    GL11.glPushMatrix();
   }
 
   override def onJump(player: EntityPlayer): Unit ={
+
+  }
+
+  override def onHarvest(e: HarvestDropsEvent): Unit ={
 
   }
 }

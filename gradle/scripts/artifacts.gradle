@@ -1,0 +1,22 @@
+task devJar(type: Jar){
+    from(sourceSets.main.output){
+        include "exoskeleton/**"
+        include "assets/**"
+        include "mcmod.info"
+    }
+
+    classifier = "dev"
+}
+
+task apiJar(type: Jar){
+    from(sourceSets.api.scala){
+        include "exoskeleton/api/**"
+    }
+
+    classifier = "api"
+}
+
+artifacts{
+    archives devJar
+    archives apiJar
+}

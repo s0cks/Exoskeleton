@@ -37,6 +37,10 @@ extends ItemArmor(ArmorMaterial.IRON, 0, index){
     }
   }
 
+  override def getRenderPasses(meta: Int): Int={
+    return 2;
+  }
+
   @SideOnly(Side.CLIENT)
   override def addInformation(stack: ItemStack, player: EntityPlayer, list: util.List[_], b: Boolean): Unit ={
     if(stack.hasTagCompound && stack.getTagCompound.hasKey(ExoskeletonTag.IDENTIFIER)){

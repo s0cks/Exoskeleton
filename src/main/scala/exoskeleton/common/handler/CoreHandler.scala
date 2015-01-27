@@ -11,8 +11,26 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType
 import net.minecraftforge.event.entity.living.LivingAttackEvent
 import net.minecraftforge.event.entity.living.LivingEvent.{LivingJumpEvent, LivingUpdateEvent}
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent
 
 object CoreHandler{
+  @SubscribeEvent
+  def onHarvestCheck(e: HarvestDropsEvent): Unit ={
+    if(e.harvester != null){
+      var stack: ItemStack = null;
+      for(i: Int <- 0 to 3){
+        stack = e.harvester.getCurrentArmor(i);
+
+        if(stack != null && stack.getItem.isInstanceOf[ItemExoArmor]){
+          val core = ExoskeletonCores.findCore(stack);
+          if(core != null){
+            core.onHarvest(e);
+          }
+        }
+      }
+    }
+  }
+
   @SubscribeEvent
   def onBreakSpeed(e: BreakSpeed): Unit = {
     var stack: ItemStack = null;

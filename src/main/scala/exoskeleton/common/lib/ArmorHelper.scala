@@ -1,7 +1,7 @@
 package exoskeleton.common.lib
 
 import exoskeleton.api.ExoskeletonCores
-import exoskeleton.common.core.{CoreReflex, CoreRecon, CoreGhost}
+import exoskeleton.common.core._
 import exoskeleton.common.item.{ItemExoLeggings, ItemExoBoots, ItemExoChestplate, ItemExoHelmet}
 import exoskeleton.common.lib.skills.PlayerSkills
 import net.minecraft.block.material.Material
@@ -47,5 +47,23 @@ object ArmorHelper{
     return hasExoLegs(player) &&
            ExoskeletonCores.findCore(player.getCurrentArmor(1)) == CoreReflex &&
            PlayerSkills.get(player).hasSkill("reflex", "blink");
+  }
+
+  def backtrack(player: EntityPlayer): Boolean={
+    return hasExoChest(player) &&
+           ExoskeletonCores.findCore(player.getCurrentArmor(2)) == CoreReflex &&
+           PlayerSkills.get(player).hasSkill("reflex", "backtrack");
+  }
+
+  def autosmelt(player: EntityPlayer): Boolean={
+    return hasExoChest(player) &&
+           ExoskeletonCores.findCore(player.getCurrentArmor(2)) == CoreInferno &&
+           PlayerSkills.get(player).hasSkill("inferno", "autoSmelt");
+  }
+
+  def flight(player: EntityPlayer): Boolean={
+    return hasExoChest(player) &&
+           ExoskeletonCores.findCore(player.getCurrentArmor(2)) == CoreSkybound &&
+           PlayerSkills.get(player).hasSkill("skybound", "flight");
   }
 }

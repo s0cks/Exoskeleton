@@ -1,21 +1,16 @@
 package exoskeleton.client.gui
 
-import java.util
-
 import exoskeleton.common.gui.ContainerModifier
-import net.minecraft.client.gui.GuiButton
 import net.minecraft.client.gui.inventory.GuiContainer
 import net.minecraft.util.ResourceLocation
 import org.lwjgl.opengl.GL11
 
 class GuiModifier(val modifier: ContainerModifier)
 extends GuiContainer(modifier){
-  private val texture: ResourceLocation = new ResourceLocation("exo", "textures/gui/modifier.png");
+  private val texture = new ResourceLocation("exo", "textures/gui/modifier.png");
 
   override def initGui(): Unit = {
-    val list: util.List[GuiButton] = this.buttonList.asInstanceOf[util.List[GuiButton]];
-    list.add(new GuiButton(0, 0, 0, 125, 25, "Recon"));
-    list.add(new GuiButton(1, 0, 30, 125, 25, "Bulldozer"));
+
   }
 
     override def drawGuiContainerBackgroundLayer(p_146976_1_ : Float, p_146976_2_ : Int, p_146976_3_ : Int): Unit ={

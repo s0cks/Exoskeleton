@@ -37,6 +37,11 @@ object ExoskeletonCores{
     return this.findCore(stack) != null;
   }
 
+  def installCore(stack: ItemStack, core: Core): Unit ={
+    val comp = ExoskeletonTag.getTag(stack);
+    comp.setString("coreName", core.getID());
+  }
+
   def findTree(stack: ItemStack): Tree={
     if(stack.hasTagCompound() &&
        stack.getTagCompound.hasKey(ExoskeletonTag.IDENTIFIER)){

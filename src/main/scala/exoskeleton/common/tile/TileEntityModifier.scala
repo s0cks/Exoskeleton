@@ -9,6 +9,7 @@ class TileEntityModifier
 extends TileEntity
 with IInventory{
   var inventory: Array[ItemStack] = new Array[ItemStack](1);
+  var rotation = 0.0F;
 
   override def getSizeInventory: Int ={
     return 1;

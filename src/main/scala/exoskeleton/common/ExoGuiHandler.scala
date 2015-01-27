@@ -1,7 +1,7 @@
 package exoskeleton.common
 
 import cpw.mods.fml.common.network.IGuiHandler
-import exoskeleton.client.gui.{GuiTest, GuiDebug, GuiModifier, GuiToolbox}
+import exoskeleton.client.gui._
 import exoskeleton.common.gui.{ContainerModifier, ContainerToolbox}
 import exoskeleton.common.lib.tree.TreeRecon
 import exoskeleton.common.tile.{TileEntityModifier, TileEntityToolbox}
@@ -38,10 +38,10 @@ extends IGuiHandler{
         return new GuiModifier(new ContainerModifier(tile.asInstanceOf[TileEntityModifier], player));
       }
       case 2 =>{
-        return new GuiDebug(player);
+        return new GuiTest(player, TreeRecon);
       }
       case 3 =>{
-        return new GuiTest(player, new TreeRecon());
+        return new GuiDebug(player);
       }
       case _ =>{
         return null;

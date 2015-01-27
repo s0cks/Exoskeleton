@@ -7,6 +7,7 @@ import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.DamageSource
 import net.minecraftforge.event.entity.living.LivingAttackEvent
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent
 
 object CoreGhost
 extends AbstractCore("ghost"){
@@ -23,7 +24,6 @@ extends AbstractCore("ghost"){
   }
 
   override def onUpdate(player: EntityPlayer): Unit ={
-
   }
 
   override def getBreakSpeedModifier(player: EntityPlayer, b: Block, meta: Int, oldSpeed: Float): Float ={
@@ -35,6 +35,10 @@ extends AbstractCore("ghost"){
   }
 
   override def onJump(player: EntityPlayer): Unit ={
+
+  }
+
+  override def onHarvest(e: HarvestDropsEvent): Unit ={
 
   }
 }

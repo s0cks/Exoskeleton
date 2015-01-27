@@ -18,7 +18,7 @@ public class Hooks{
             return false;
         } else if(itemstack != null && ExoskeletonCores.findCore(itemstack) == CoreReflex$.MODULE$ && PlayerSkills.get(player).hasSkill("reflex", "noEnderman")){
             return false;
-        }else {
+        } else {
             Vec3 vec3 = player.getLook(1.0F).normalize();
             Vec3 vec31 = Vec3.createVectorHelper(enderman.posX - player.posX, enderman.boundingBox.minY + (double)(enderman.height / 2.0F) - (player.posY + (double)player.getEyeHeight()), enderman.posZ - player.posZ);
             double d0 = vec31.lengthVector();

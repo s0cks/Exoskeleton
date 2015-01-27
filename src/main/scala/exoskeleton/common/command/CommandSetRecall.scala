@@ -1,6 +1,6 @@
 package exoskeleton.common.command
 
-import exoskeleton.api.util.Vector3
+import exoskeleton.api.utils.Vector3
 import exoskeleton.common.lib.data.DataManager
 import net.minecraft.command.{CommandBase, ICommandSender}
 import net.minecraft.entity.player.EntityPlayer

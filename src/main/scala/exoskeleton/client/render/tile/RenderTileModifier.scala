@@ -1,7 +1,7 @@
-package exoskeleton.client.render
+package exoskeleton.client.render.tile
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler
-import exoskeleton.common.tile.TileEntityAssembler
+import exoskeleton.common.tile.TileEntityModifier
 import net.minecraft.block.Block
 import net.minecraft.client.renderer.RenderBlocks
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
@@ -14,16 +14,16 @@ import net.minecraftforge.client.IItemRenderer.{ItemRenderType, ItemRendererHelp
 import net.minecraftforge.client.model.{AdvancedModelLoader, IModelCustom}
 import org.lwjgl.opengl.GL11
 
-class AssemblerRenderer(val id: Int)
+class RenderTileModifier(val id: Int)
 extends TileEntitySpecialRenderer
 with ISimpleBlockRenderingHandler
 with IItemRenderer{
-  private val model: IModelCustom = AdvancedModelLoader.loadModel(new ResourceLocation("exo", "models/assembler.tcn"));
-  private val texture: ResourceLocation = new ResourceLocation("exo", "textures/blocks/assembler.png");
+  private val model: IModelCustom = AdvancedModelLoader.loadModel(new ResourceLocation("exo", "models/modifier.tcn"));
+  private val texture: ResourceLocation = new ResourceLocation("exo", "textures/blocks/modifier.png");
 
   override def renderTileEntityAt(te: TileEntity, x : Double, y : Double, z : Double, scale : Float): Unit ={
     this.bindTexture(this.texture);
-    val tile: TileEntityAssembler = te.asInstanceOf[TileEntityAssembler];
+    val tile: TileEntityModifier = te.asInstanceOf[TileEntityModifier];
     GL11.glPushMatrix();
     GL11.glTranslated(x + 0.5D, y + 0.05D, z + 0.5D);
     GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);

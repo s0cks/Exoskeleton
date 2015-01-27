@@ -8,8 +8,8 @@ import cpw.mods.fml.common.{LoadController, ModMetadata, DummyModContainer}
 class EXOModContainer
 extends DummyModContainer(new ModMetadata()){
   val meta = this.getMetadata;
-  meta.modId = "EXO|Core";
-  meta.name = "Exoskeleton|Core";
+  meta.modId = "EXOCore";
+  meta.name = "EXOCore";
   meta.version = "1.0.0.0";
   meta.credits = "Asyncronous";
   meta.authorList = util.Arrays.asList("Asyncronous");

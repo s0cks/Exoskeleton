@@ -10,12 +10,13 @@ import exoskeleton.common.handler._
 import exoskeleton.common.network.PacketHandler
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
+import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.MinecraftForge
 
 @Mod(
   modid = "exo",
   name = "Exoskeleton",
-  version = "0.0.0",
+  version = "0.0.0.0",
   modLanguage = "scala"
 )
 object Exoskeleton{
@@ -30,6 +31,7 @@ object Exoskeleton{
       return ExoItems.itemCoreRecon;
     }
   };
+  val glow_effects = new ResourceLocation("exo", "textures/glow_effects.png");
 
   @Mod.EventHandler
   def preInit(e: FMLPreInitializationEvent): Unit ={
@@ -39,6 +41,7 @@ object Exoskeleton{
 
     FMLCommonHandler.instance().bus().register(KeyHandler);
     FMLCommonHandler.instance().bus().register(FadeHandler);
+    FMLCommonHandler.instance().bus().register(BacktrackHandler);
   }
 
   @Mod.EventHandler

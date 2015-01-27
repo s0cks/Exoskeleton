@@ -1,13 +1,11 @@
 package exoskeleton.common.block
 
-import exoskeleton.api.ExoskeletonTag
-import exoskeleton.common.item.ItemExoArmor
 import exoskeleton.common.Exoskeleton
+import exoskeleton.common.item.ItemExoArmor
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.world.World
 
 object BlockTest
@@ -19,12 +17,7 @@ extends Block(Material.iron) {
     val stack: ItemStack = player.getCurrentEquippedItem();
 
     if(stack != null &&
-       stack.getItem().isInstanceOf[ItemExoArmor]){
-
-      val comp: NBTTagCompound = ExoskeletonTag.getTag(stack);
-      comp.setString("coreName", "reflex");;
-
-    } else{
+       stack.getItem().isInstanceOf[ItemExoArmor]) {
       player.openGui(Exoskeleton, 3, world, x, y, z);
     }
 

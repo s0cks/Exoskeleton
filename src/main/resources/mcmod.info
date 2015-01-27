@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
+  "modid": "exo",
+  "name": "Exoskeleton",
+  "description": "Modular armour mod, based upon DeadSpace 2",
+  "version": "@VERSION@",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Asyncronous"],
+  "credits": "Asyncronous, CyanideX",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

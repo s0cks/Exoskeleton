@@ -1,6 +1,7 @@
-package exoskeleton.api.util;
+package exoskeleton.api.utils;
 
 import exoskeleton.api.ISaveable;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Vector3
@@ -37,6 +38,10 @@ implements ISaveable{
 
     public double z(){
         return this.z;
+    }
+
+    public void teleportPlayer(EntityPlayer player){
+        player.setPositionAndUpdate(this.x, this.y, this.z);
     }
 
     @Override

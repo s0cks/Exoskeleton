@@ -88,6 +88,6 @@ with IInventory {
   }
 
   override def getInventoryName: String = {
-    return "toolbox";
+    return "modifier";
   }
 }

@@ -9,6 +9,7 @@ class ItemExoBoots
 extends ItemExoArmor(3){
   private var core: IIcon = null;
   private var frame: IIcon = null;
+  private var overlay: IIcon = null;
 
   this.setUnlocalizedName("exo.boots");
 
@@ -17,12 +18,12 @@ extends ItemExoArmor(3){
     this.core = register.registerIcon("exo:exoBoots");
   }
 
-  override def getIcon(stack: ItemStack, pass: Int): IIcon={
-    if(stack.hasTagCompound &&
-      stack.getTagCompound.hasKey(ExoskeletonTag.IDENTIFIER)){
+  override def getIcon(stack: ItemStack, pass: Int): IIcon= {
+    if (stack.hasTagCompound &&
+      stack.getTagCompound.hasKey(ExoskeletonTag.IDENTIFIER)) {
 
       return this.core;
-    } else{
+    } else {
       return this.frame;
     }
   }
