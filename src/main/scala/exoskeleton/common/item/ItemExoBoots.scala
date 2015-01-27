@@ -9,7 +9,6 @@ class ItemExoBoots
 extends ItemExoArmor(3){
   private var core: IIcon = null;
   private var frame: IIcon = null;
-  private var overlay: IIcon = null;
 
   this.setUnlocalizedName("exo.boots");
 

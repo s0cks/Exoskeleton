@@ -38,7 +38,7 @@ extends AbstractCore("recon"){
       }
     }
 
-    if(hasSkill(player, "speedyLegs") && ArmorHelper.hasExoLegs(player) && player.moveForward > 0.0F){
+    if(hasSkill(player, "speedyLegs") && ArmorHelper.hasExoLegs(player) && player.moveForward > 0.0F && player.onGround){
       player.moveFlying(0.0F, 1.0F, 0.016F * 2);
     }
 

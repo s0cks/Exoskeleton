@@ -4,6 +4,7 @@ import java.util
 
 import cpw.mods.fml.relauncher.{Side, SideOnly}
 import exoskeleton.api.ExoskeletonTag
+import exoskeleton.api.utils.StringUtils
 import exoskeleton.client.model.ModelExoBoots
 import exoskeleton.common.Exoskeleton
 import net.minecraft.client.model.ModelBiped
@@ -46,7 +47,7 @@ extends ItemArmor(ArmorMaterial.IRON, 0, index){
     if(stack.hasTagCompound && stack.getTagCompound.hasKey(ExoskeletonTag.IDENTIFIER)){
       val comp = ExoskeletonTag.getTag(stack);
       val ls: util.List[String] = list.asInstanceOf[util.List[String]];
-      ls.add("Current Core: " + comp.getString("coreName"));
+      ls.add("Current Core: " + StringUtils.capitalize(comp.getString("coreName")));
     }
   }
 }

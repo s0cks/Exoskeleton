@@ -1,6 +1,6 @@
 package exoskeleton.api
 
-import exoskeleton.api.utils.ArmorOverlaySet
+import exoskeleton.api.utils.OverlaySet
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.DamageSource
@@ -16,5 +16,5 @@ trait Core{
   def getBreakSpeedModifier(player: EntityPlayer, b: Block, meta: Int,  oldSpeed: Float): Float;
   def onHud(player: EntityPlayer);
   def onHarvest(e: HarvestDropsEvent);
-  def overlay(): ArmorOverlaySet;
+  def overlay(): OverlaySet;
 }

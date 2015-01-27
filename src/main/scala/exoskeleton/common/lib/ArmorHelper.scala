@@ -66,4 +66,10 @@ object ArmorHelper{
            ExoskeletonCores.findCore(player.getCurrentArmor(2)) == CoreSkybound &&
            PlayerSkills.get(player).hasSkill("skybound", "flight");
   }
+
+  def tangibleBlink(player: EntityPlayer): Boolean={
+    return hasExoLegs(player) &&
+           ExoskeletonCores.findCore(player.getCurrentArmor(1)) == CoreGhost &&
+           PlayerSkills.get(player).hasSkill("ghost", "tBlink");
+  }
 }

@@ -2,7 +2,7 @@ package exoskeleton.common.handler
 
 import com.google.common.eventbus.Subscribe
 import exoskeleton.api.event._
-import exoskeleton.common.lib.data.DataManager
+import exoskeleton.common.lib.data.DataManager;
 
 object EXOEventHandler{
   @Subscribe
@@ -37,6 +37,5 @@ object EXOEventHandler{
   @Subscribe
   def onFlight(e: FlightToggleEvent): Unit ={
     DataManager.get(e.player).setFlight(!DataManager.get(e.player).flightEnabled());
-    System.out.println("Flight Toggled: " + DataManager.get(e.player).flightEnabled());
   }
 }
