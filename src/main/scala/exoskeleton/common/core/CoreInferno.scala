@@ -5,6 +5,7 @@ import exoskeleton.client.MotorBlock
 import exoskeleton.common.lib.ArmorHelper
 import exoskeleton.common.lib.data.DataManager
 import exoskeleton.common.lib.skills.PlayerSkills
+import exoskeleton.common.lib.tree.TreeInferno
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.crafting.FurnaceRecipes
@@ -50,7 +51,7 @@ extends AbstractCore("inferno"){
   }
 
   override def getTree(): Tree ={
-    return null;
+    return TreeInferno;
   }
 
   override def onHarvest(e: HarvestDropsEvent): Unit ={

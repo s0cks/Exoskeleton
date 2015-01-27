@@ -4,6 +4,7 @@ import exoskeleton.api.Tree
 import exoskeleton.client.MotorBlock
 import exoskeleton.common.lib.ArmorHelper
 import exoskeleton.common.lib.data.DataManager
+import exoskeleton.common.lib.tree.TreeSkybound
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.DamageSource
@@ -15,7 +16,7 @@ import org.lwjgl.opengl.GL11
 object CoreSkybound
 extends AbstractCore("skybound"){
   override def getTree(): Tree ={
-    return null;
+    return TreeSkybound;
   }
 
   override def onAttacked(e: LivingAttackEvent, player: EntityPlayer, source: DamageSource): Unit ={

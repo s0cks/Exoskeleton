@@ -58,6 +58,7 @@ object Exoskeleton{
     ExoskeletonCores.registerCore(CoreSkybound);
     ExoskeletonCores.registerCore(CoreGhost);
     ExoskeletonCores.registerCore(CoreReflex);
+    ExoskeletonCores.registerCore(CoreMedic);
 
     ExoskeletonAPI.event_bus.register(EXOEventHandler);
 

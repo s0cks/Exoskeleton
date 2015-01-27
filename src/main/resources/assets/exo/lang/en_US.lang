@@ -1,6 +1,12 @@
+itemGroup.exoskeleton=Exoskeleton
+
 # Items
 item.core.recon.name=Recon Core
-item.core.entry.name=Entry Core
+item.core.reflex.name=Reflex Core
+item.core.medic.name=Medic Core
+item.core.inferno.name=Inferno Core
+item.core.skybound.name=Skybound Core
+item.core.ghost.name=Ghost Core
 
 item.exo.helm.name=Exoskeleton Helmet
 item.exo.chest.name=Exoskeleton Chestplate

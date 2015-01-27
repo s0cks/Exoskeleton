@@ -37,12 +37,6 @@ extends CommonProxy{
     MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorChest, new RenderItemExoChest());
     MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorHelm, new RenderItemExoHelm());
     MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorLegs, new RenderItemExoLegs());
-
-    MinecraftForgeClient.registerItemRenderer(ExoItems.itemCoreGhost, RenderItemCore);
-    MinecraftForgeClient.registerItemRenderer(ExoItems.itemCoreInferno, RenderItemCore);
-    MinecraftForgeClient.registerItemRenderer(ExoItems.itemCoreRecon, RenderItemCore);
-    MinecraftForgeClient.registerItemRenderer(ExoItems.itemCoreReflex, RenderItemCore);
-    MinecraftForgeClient.registerItemRenderer(ExoItems.itemCoreSkybound, RenderItemCore);
   }
 
   override def getClientWorld(): World={

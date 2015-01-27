@@ -9,6 +9,7 @@ import net.minecraft.util.IIcon
 class ItemCore(val core: Core)
 extends Item{
   private var icon: IIcon = null;
+  private var overlay: IIcon = null;
 
   this.setCreativeTab(Exoskeleton.tab);
   this.setMaxStackSize(1);
@@ -16,9 +17,25 @@ extends Item{
 
   override def registerIcons(reg: IIconRegister): Unit ={
     this.icon = reg.registerIcon("exo:cores/base_core");
+    this.overlay = reg.registerIcon("exo:overlay/" + this.core.getID() + "_core");
   }
 
   override def getIcon(stack: ItemStack, pass: Int): IIcon={
-    return this.icon;
+    pass match{
+      case 0=>{
+        return this.icon;
+      }
+      case 1=>{
+        return this.overlay;
+      }
+    }
+  }
+
+  override def requiresMultipleRenderPasses(): Boolean={
+    return true;
+  }
+
+  override def getRenderPasses(meta: Int): Int={
+    return 2;
   }
 }

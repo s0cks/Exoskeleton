@@ -3,6 +3,7 @@ package exoskeleton.common.core
 import java.util.Random
 
 import exoskeleton.api.Tree
+import exoskeleton.common.lib.tree.TreeReflex
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.DamageSource
@@ -14,7 +15,7 @@ extends AbstractCore("reflex"){
   private val rand = new Random();
 
   override def getTree(): Tree ={
-    return null;
+    return TreeReflex;
   }
 
   override def onAttacked(e: LivingAttackEvent, player: EntityPlayer, source: DamageSource): Unit ={
