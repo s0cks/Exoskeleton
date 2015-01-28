@@ -8,6 +8,10 @@ object PacketHandler{
 
   def init(): Unit ={
     instance.registerMessage(classOf[PacketPlayerFade], classOf[PacketPlayerFade], 0x0, Side.SERVER);
-    instance.registerMessage(classOf[PacketPlayerBloom], classOf[PacketPlayerBloom], 0x1, Side.SERVER);
+    instance.registerMessage(classOf[PacketSyncPlayerData], classOf[PacketSyncPlayerData], 0x1, Side.CLIENT);
+    instance.registerMessage(classOf[PacketSyncSkills], classOf[PacketSyncSkills], 0x2, Side.CLIENT);
+    instance.registerMessage(classOf[PacketToggleFlight], classOf[PacketToggleFlight], 0x3, Side.SERVER);
+    instance.registerMessage(classOf[PacketRecall], classOf[PacketRecall], 0x4, Side.SERVER);
+    instance.registerMessage(classOf[PacketBacktrack], classOf[PacketBacktrack], 0x5, Side.SERVER);
   }
 }

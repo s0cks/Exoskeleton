@@ -2,8 +2,9 @@ package exoskeleton.common.command
 
 import exoskeleton.api.utils.Vector3
 import exoskeleton.common.lib.data.DataManager
+import exoskeleton.common.network.{PacketSyncPlayerData, PacketHandler}
 import net.minecraft.command.{CommandBase, ICommandSender}
-import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.entity.player.{EntityPlayerMP, EntityPlayer}
 import net.minecraft.util.ChatComponentText
 
 class CommandSetRecall
@@ -24,6 +25,7 @@ extends CommandBase{
       val z = player.posZ;
 
       DataManager.get(player).setRecallPoint(Vector3.of(x, y, z));
+      PacketHandler.instance.sendTo(new PacketSyncPlayerData(player), player.asInstanceOf[EntityPlayerMP]);
       sender.addChatMessage(new ChatComponentText("Recall Point Set"));
     }
   }

@@ -1,11 +1,20 @@
 package exoskeleton.client.model;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
+@SideOnly(Side.CLIENT)
 public final class ModelExoBoots
 extends ModelBiped{
+    private static ModelExoBoots instance;
+
+    public static ModelExoBoots instance(){
+        return instance == null ? instance = new ModelExoBoots() : instance;
+    }
+
     ModelRenderer jointR;
     ModelRenderer footR;
     ModelRenderer jointL;

@@ -16,11 +16,11 @@ import net.minecraft.util.ResourceLocation;
 
 class ItemExoArmor(index: Int)
 extends ItemArmor(ArmorMaterial.IRON, 0, index){
-  private val modelBoots: ModelBiped = new ModelExoBoots();
   private val texture: ResourceLocation = new ResourceLocation("exo", "textures/armor/exo_armor.png");
 
   this.setCreativeTab(Exoskeleton.tab);
 
+  @SideOnly(Side.CLIENT)
   override def getArmorTexture(stack: ItemStack, entity: Entity, slot: Int, t: String): String={
     return this.texture.toString();
   }
@@ -30,7 +30,7 @@ extends ItemArmor(ArmorMaterial.IRON, 0, index){
     armorSlot match
     {
       case 3 =>{
-        return this.modelBoots;
+        return ModelExoBoots.instance();
       }
       case _ =>{
         return null;

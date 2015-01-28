@@ -1,9 +1,9 @@
 package exoskeleton.common.command
 
 import exoskeleton.common.lib.skills.PlayerSkills
-import net.minecraft.command.{ICommandSender, CommandBase}
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.util.ChatComponentText
+import exoskeleton.common.network.{PacketSyncSkills, PacketHandler}
+import net.minecraft.command.{CommandBase, ICommandSender}
+import net.minecraft.entity.player.{EntityPlayerMP, EntityPlayer}
 
 class CommandGiveSkill
 extends CommandBase{
@@ -21,8 +21,7 @@ extends CommandBase{
 
     if(sender.isInstanceOf[EntityPlayer]){
       PlayerSkills.get(sender.asInstanceOf[EntityPlayer]).addSkill(tree, skill);
-    } else{
-      sender.addChatMessage(new ChatComponentText("Error"));
+      PacketHandler.instance.sendTo(new PacketSyncSkills(sender.asInstanceOf[EntityPlayer]), sender.asInstanceOf[EntityPlayerMP]);
     }
   }
 }

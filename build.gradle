@@ -41,7 +41,7 @@ jar{
 }
 
 minecraft{
-    version = "1.7.10-10.13.2.1230"
+    version = "1.7.10-10.13.2.1291"
     replace "@version@", project.version
     runDir = "run"
 }

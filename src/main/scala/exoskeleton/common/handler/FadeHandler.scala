@@ -5,7 +5,6 @@ import java.util
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import cpw.mods.fml.common.gameevent.TickEvent.{Phase, PlayerTickEvent}
 import exoskeleton.common.lib.fade.PlayerFadeInfo
-import exoskeleton.common.network.{PacketPlayerBloom, PacketHandler}
 ;
 
 object FadeHandler{
@@ -18,7 +17,7 @@ object FadeHandler{
       val info = this.playerFadeInfo.get(player.getCommandSenderName);
       if(info != null){
         if(info.prog <= 0){
-          PacketHandler.instance.sendToServer(new PacketPlayerBloom(e.player));
+          player.setInvisible(false);
           playerFadeInfo.remove(player.getCommandSenderName);
         } else{
           info.prog -= 1;

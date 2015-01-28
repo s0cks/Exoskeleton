@@ -20,8 +20,12 @@ extends ISaveable{
     return this.recallPoint;
   }
 
-  def setBacktrackPosition(player: EntityPlayer) ={
+  def setBacktrackPosition(player: EntityPlayer): Unit={
     this.lastPlace = Vector3.of(player.posX, player.posY, player.posZ);
+  }
+
+  def setBacktrackPosition(vec: Vector3): Unit ={
+    this.lastPlace = vec;
   }
 
   def getBacktrackPosition(): Vector3={

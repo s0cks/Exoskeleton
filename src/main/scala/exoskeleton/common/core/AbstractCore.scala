@@ -20,6 +20,10 @@ extends Core{
   }
 
   protected def hasSkill(player: EntityPlayer, skill: String): Boolean={
+    if(PlayerSkills.get(player) == null){
+      return false;
+    }
+
     return PlayerSkills.get(player).hasSkill(this.getID(), skill);
   }
 

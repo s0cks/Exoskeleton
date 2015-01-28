@@ -28,6 +28,11 @@ implements ISaveable{
         return vec;
     }
 
+    public static Vector3 of(String str){
+        String[] args = str.split("|");
+        return new Vector3(Double.valueOf(args[0]), Double.valueOf(args[1]), Double.valueOf(args[2]));
+    }
+
     public double x(){
         return this.x;
     }
@@ -42,6 +47,10 @@ implements ISaveable{
 
     public void teleportPlayer(EntityPlayer player){
         player.setPositionAndUpdate(this.x, this.y, this.z);
+    }
+
+    public String toUTF8(){
+        return this.x + "|" + this.y + "|" + this.z;
     }
 
     @Override

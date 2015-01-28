@@ -1,21 +1,24 @@
 package exoskeleton.common.lib.data
 
 import java.io.{File, FileInputStream, FileOutputStream}
+import java.util
 
 import cpw.mods.fml.common.ObfuscationReflectionHelper
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.{CompressedStreamTools, NBTTagCompound};
-import java.util
-
+import net.minecraft.nbt.{CompressedStreamTools, NBTTagCompound}
 import net.minecraft.server.MinecraftServer
 import net.minecraft.world.storage.SaveHandler
-;
 
 object DataManager{
-  private val map = new util.HashMap[EntityPlayer, PlayerData]();
+  private val map = new util.HashMap[String, PlayerData]();
 
   def get(player: EntityPlayer): PlayerData={
-    return this.map.get(player);
+    return this.map.get(player.getCommandSenderName);
+  }
+
+  def set(player: EntityPlayer, data: PlayerData): Unit ={
+    if(player == null) throw new NullPointerException("Player == null");
+    this.map.put(player.getCommandSenderName, data);
   }
 
   def getPlayerData(player: EntityPlayer): Unit={
@@ -26,7 +29,7 @@ object DataManager{
     val comp = this.load(file);
     val data = new PlayerData();
     data.readFromNBT(comp);
-    map.put(player, data);
+    map.put(player.getCommandSenderName, data);
   }
 
   def savePlayerData(player: EntityPlayer): Unit ={
@@ -35,7 +38,7 @@ object DataManager{
     val dir: File = ObfuscationReflectionHelper.getPrivateValue(classOf[SaveHandler], sh, "playersDirectory", "field_75771_c");
     val file = new File(dir, player.getDisplayName + ".exoData");
     val compound = new NBTTagCompound;
-    map.get(player).writeToNBT(compound);
+    map.get(player.getCommandSenderName).writeToNBT(compound);
     this.save(compound, file);
   }
 

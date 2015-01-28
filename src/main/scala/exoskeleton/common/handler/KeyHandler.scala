@@ -8,7 +8,7 @@ import cpw.mods.fml.relauncher.Side
 import exoskeleton.api.ExoskeletonAPI
 import exoskeleton.api.event._
 import exoskeleton.common.lib.ArmorHelper
-import exoskeleton.common.network.{PacketHandler, PacketPlayerFade}
+import exoskeleton.common.network._
 import net.minecraft.client.settings.KeyBinding
 import org.lwjgl.input.Keyboard
 
@@ -34,15 +34,15 @@ object KeyHandler{
     if(e.phase == Phase.START){
       if(this.key_function.isPressed && FMLClientHandler.instance().getClient.inGameHasFocus){
         if(ArmorHelper.fadable(e.player)){
-          PacketHandler.instance.sendToServer(new PacketPlayerFade(e.player));
+          PacketHandler.instance.sendToServer(new PacketPlayerFade());
         } else if(ArmorHelper.flight(e.player)){
-          ExoskeletonAPI.event_bus.post(new FlightToggleEvent(e.player));
+          PacketHandler.instance.sendToServer(new PacketToggleFlight());
         }
       }
 
       if(this.key_recall.isPressed && FMLClientHandler.instance().getClient.inGameHasFocus){
         if(ArmorHelper.recallable(e.player)){
-          ExoskeletonAPI.event_bus.post(new RecallEvent(e.player));
+          PacketHandler.instance.sendToServer(new PacketRecall());
         }
       }
 
@@ -54,7 +54,7 @@ object KeyHandler{
 
       if(this.key_backtrack.isPressed && FMLClientHandler.instance().getClient.inGameHasFocus){
         if(ArmorHelper.backtrack(e.player)){
-          ExoskeletonAPI.event_bus.post(new BacktrackEvent(e.player));
+          PacketHandler.instance.sendToServer(new PacketBacktrack());
         }
       }
 

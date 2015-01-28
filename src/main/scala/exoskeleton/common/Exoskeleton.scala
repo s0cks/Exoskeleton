@@ -1,16 +1,15 @@
 package exoskeleton.common
 
-import cpw.mods.fml.common.event.{FMLServerStartingEvent, FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
+import cpw.mods.fml.common.event._
 import cpw.mods.fml.common.network.NetworkRegistry
 import cpw.mods.fml.common.{FMLCommonHandler, Mod, SidedProxy}
 import exoskeleton.api.{ExoskeletonAPI, ExoskeletonCores}
-import exoskeleton.common.command.{CommandSetRecall, CommandRemoveSkill, CommandGiveSkill}
+import exoskeleton.common.command.{CommandGiveSkill, CommandRemoveSkill, CommandSetRecall}
 import exoskeleton.common.core._
 import exoskeleton.common.handler._
 import exoskeleton.common.network.PacketHandler
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
-import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.MinecraftForge
 
 @Mod(
@@ -31,17 +30,18 @@ object Exoskeleton{
       return ExoItems.itemCoreRecon;
     }
   };
-  val glow_effects = new ResourceLocation("exo", "textures/glow_effects.png");
 
   @Mod.EventHandler
   def preInit(e: FMLPreInitializationEvent): Unit ={
-    MinecraftForge.EVENT_BUS.register(CoreHandler);
     MinecraftForge.EVENT_BUS.register(DataHandler);
-    MinecraftForge.EVENT_BUS.register(NightVisionHandler);
+    MinecraftForge.EVENT_BUS.register(CoreHandler);
 
-    FMLCommonHandler.instance().bus().register(KeyHandler);
+    proxy.registerHandlers();
+
     FMLCommonHandler.instance().bus().register(FadeHandler);
     FMLCommonHandler.instance().bus().register(BacktrackHandler);
+
+    FMLCommonHandler.instance().bus().register(DataHandler);
   }
 
   @Mod.EventHandler
@@ -49,6 +49,8 @@ object Exoskeleton{
     ExoItems.init();
     ExoBlocks.init();
     ExoTiles.init();
+
+    FMLInterModComms.sendMessage("waila", "register", "exoskeleton.client.waila.EXOEntityHandler");
   }
 
   @Mod.EventHandler
