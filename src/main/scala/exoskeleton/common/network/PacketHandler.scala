@@ -15,5 +15,7 @@ object PacketHandler{
     instance.registerMessage(classOf[PacketBacktrack], classOf[PacketBacktrack], 0x5, Side.SERVER);
     instance.registerMessage(classOf[PacketBlink], classOf[PacketBlink], 0x6, Side.SERVER);
     instance.registerMessage(classOf[PacketToggleAutoSmelt], classOf[PacketToggleAutoSmelt], 0x7, Side.SERVER);
+    instance.registerMessage(classOf[PacketToggleThermal], classOf[PacketToggleThermal], 0x8, Side.SERVER);
+    instance.registerMessage(classOf[PacketToggleNightVision], classOf[PacketToggleNightVision], 0x9, Side.SERVER);
   }
 }

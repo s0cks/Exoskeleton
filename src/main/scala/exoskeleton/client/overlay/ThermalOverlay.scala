@@ -4,16 +4,15 @@ import exoskeleton.api.Overlay
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.Tessellator
 import org.lwjgl.opengl.GL11
-;
 
-class NightvisionOverlay
+class ThermalOverlay
 extends Overlay{
-  private var nightVision: Integer = null;
+  private var thermal: Integer = null;
 
   override def draw(minecraft: Minecraft): Unit ={
-    if(this.nightVision == null){
-      this.nightVision = GL11.glGenLists(1);
-      GL11.glNewList(nightVision, GL11.GL_COMPILE);
+    if(this.thermal == null){
+      this.thermal = GL11.glGenLists(2);
+      GL11.glNewList(thermal, GL11.GL_COMPILE);
       GL11.glMatrixMode(GL11.GL_MODELVIEW);
       GL11.glPushMatrix();
       GL11.glLoadIdentity();
@@ -30,7 +29,7 @@ extends Overlay{
 
       val tess = new Tessellator();
       tess.startDrawingQuads();
-      tess.setColorRGBA(0, 180, 0, 25);
+      tess.setColorRGBA(117, 49, 181, 100);
       tess.addVertex(-1, -1, 0);
       tess.addVertex(1, -1, 0);
       tess.addVertex(1, 1, 0);
@@ -51,6 +50,6 @@ extends Overlay{
       GL11.glEndList();
     }
 
-    GL11.glCallList(this.nightVision);
+    GL11.glCallList(this.thermal);
   }
 }

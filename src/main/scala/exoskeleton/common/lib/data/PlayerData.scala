@@ -11,6 +11,8 @@ extends ISaveable{
   private var lastPlace: Vector3 = null;
   private var autoSmelt: Boolean = false;
   private var allowFlight: Boolean = false;
+  private var thermalOn: Boolean = false;
+  private var nightVision: Boolean = false;
 
   def setRecallPoint(vec: Vector3): Unit ={
     this.recallPoint = vec;
@@ -48,11 +50,29 @@ extends ISaveable{
     return this.allowFlight;
   }
 
+  def setThermal(b: Boolean): Unit ={
+    this.thermalOn = b;
+  }
+
+  def thermal(): Boolean={
+    return this.thermalOn;
+  }
+
+  def setNightVision(b: Boolean): Unit ={
+    this.nightVision = b;
+  }
+
+  def nightVisionEnabled(): Boolean ={
+    return this.nightVision;
+  }
+
   override def readFromNBT(comp: NBTTagCompound): Unit ={
     this.recallPoint = Vector3.of(comp.getCompoundTag("recallPoint"));
     this.lastPlace = Vector3.of(comp.getCompoundTag("backtrackPos"));
     this.autoSmelt = comp.getBoolean("autosmelt");
     this.allowFlight = comp.getBoolean("allowFlight");
+    this.thermalOn = comp.getBoolean("thermalOn");
+    this.nightVision = comp.getBoolean("nightVision");
   }
 
   override def writeToNBT(comp: NBTTagCompound): Unit ={
@@ -66,5 +86,7 @@ extends ISaveable{
 
     comp.setBoolean("autosmelt", this.autoSmelt);
     comp.setBoolean("allowFlight", this.allowFlight);
+    comp.setBoolean("thermalOn", this.thermalOn);
+    comp.setBoolean("nightVision", this.nightVision);
   }
 }

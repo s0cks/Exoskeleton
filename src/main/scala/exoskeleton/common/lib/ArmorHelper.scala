@@ -36,6 +36,12 @@ object ArmorHelper{
            PlayerSkills.get(player).hasSkill("recon", "nightVision");
   }
 
+  def thermal(player: EntityPlayer): Boolean={
+    return hasExoHelm(player) &&
+           ExoskeletonCores.findCore(player.getCurrentArmor(3)) == CoreGhost &&
+           PlayerSkills.get(player).hasSkill("ghost", "thermal");
+  }
+
   def recallable(player: EntityPlayer): Boolean={
     return hasExoBoots(player) &&
            ExoskeletonCores.findCore(player.getCurrentArmor(0)) == CoreReflex &&
