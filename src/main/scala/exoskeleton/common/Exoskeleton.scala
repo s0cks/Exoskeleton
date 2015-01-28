@@ -35,6 +35,8 @@ object Exoskeleton{
 
   @Mod.EventHandler
   def preInit(e: FMLPreInitializationEvent): Unit ={
+    ExoConfiguration.init(e.getSuggestedConfigurationFile);
+
     MinecraftForge.EVENT_BUS.register(DataHandler);
     MinecraftForge.EVENT_BUS.register(CoreHandler);
 

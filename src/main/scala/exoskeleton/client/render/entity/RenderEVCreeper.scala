@@ -7,13 +7,15 @@ import net.minecraft.entity.Entity
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.ResourceLocation
 
-class RenderCreeperThermal
+class RenderEVCreeper
 extends RenderCreeper{
   override def getEntityTexture(e: Entity): ResourceLocation ={
     val player = FMLClientHandler.instance().getClient.thePlayer.asInstanceOf[EntityPlayer];
     if(DataManager.get(player).thermal()){
-      return Thermal.texture;
-    } else{
+      return Skins.texture;
+    } else if(DataManager.get(player).nightVisionEnabled()){
+      return Skins.texture;
+    }else{
       return super.getEntityTexture(e);
     }
   }
