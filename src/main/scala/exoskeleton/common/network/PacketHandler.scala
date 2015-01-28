@@ -13,5 +13,7 @@ object PacketHandler{
     instance.registerMessage(classOf[PacketToggleFlight], classOf[PacketToggleFlight], 0x3, Side.SERVER);
     instance.registerMessage(classOf[PacketRecall], classOf[PacketRecall], 0x4, Side.SERVER);
     instance.registerMessage(classOf[PacketBacktrack], classOf[PacketBacktrack], 0x5, Side.SERVER);
+    instance.registerMessage(classOf[PacketBlink], classOf[PacketBlink], 0x6, Side.SERVER);
+    instance.registerMessage(classOf[PacketToggleAutoSmelt], classOf[PacketToggleAutoSmelt], 0x7, Side.SERVER);
   }
 }

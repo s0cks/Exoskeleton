@@ -11,6 +11,7 @@ import exoskeleton.common.network.PacketHandler
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 import net.minecraftforge.common.MinecraftForge
+import org.apache.logging.log4j.LogManager
 
 @Mod(
   modid = "exo",
@@ -30,6 +31,7 @@ object Exoskeleton{
       return ExoItems.itemCoreRecon;
     }
   };
+  val logger = LogManager.getLogger("Exoskeleton");;
 
   @Mod.EventHandler
   def preInit(e: FMLPreInitializationEvent): Unit ={
@@ -40,7 +42,6 @@ object Exoskeleton{
 
     FMLCommonHandler.instance().bus().register(FadeHandler);
     FMLCommonHandler.instance().bus().register(BacktrackHandler);
-
     FMLCommonHandler.instance().bus().register(DataHandler);
   }
 
@@ -50,7 +51,7 @@ object Exoskeleton{
     ExoBlocks.init();
     ExoTiles.init();
 
-    FMLInterModComms.sendMessage("waila", "register", "exoskeleton.client.waila.EXOEntityHandler");
+    FMLInterModComms.sendMessage("waila", "register", "exoskeleton.client.waila.EXOEntityHandler.register");
   }
 
   @Mod.EventHandler

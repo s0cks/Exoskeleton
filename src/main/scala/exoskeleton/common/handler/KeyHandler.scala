@@ -5,8 +5,6 @@ import cpw.mods.fml.client.registry.ClientRegistry
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import cpw.mods.fml.common.gameevent.TickEvent.{Phase, PlayerTickEvent}
 import cpw.mods.fml.relauncher.Side
-import exoskeleton.api.ExoskeletonAPI
-import exoskeleton.api.event._
 import exoskeleton.common.lib.ArmorHelper
 import exoskeleton.common.network._
 import net.minecraft.client.settings.KeyBinding
@@ -48,7 +46,7 @@ object KeyHandler{
 
       if(this.key_blink.isPressed && FMLClientHandler.instance().getClient.inGameHasFocus){
         if(ArmorHelper.blinkable(e.player)){
-          ExoskeletonAPI.event_bus.post(new BlinkEvent(e.player));
+          PacketHandler.instance.sendToServer(new PacketBlink());
         }
       }
 
@@ -60,7 +58,7 @@ object KeyHandler{
 
       if(this.key_autosmelt.isPressed && FMLClientHandler.instance().getClient.inGameHasFocus){
         if(ArmorHelper.autosmelt(e.player)){
-          ExoskeletonAPI.event_bus.post(new AutoSmeltToggleEvent(e.player));
+          PacketHandler.instance.sendToServer(new PacketToggleAutoSmelt());
         }
       }
     }
