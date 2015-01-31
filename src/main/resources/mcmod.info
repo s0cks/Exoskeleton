@@ -3,7 +3,7 @@
   "modid": "exo",
   "name": "Exoskeleton",
   "description": "Modular armour mod, based upon DeadSpace 2",
-  "version": "@VERSION@",
+  "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",

@@ -16,7 +16,7 @@ extends BlockContainer(Material.iron){
   this.setCreativeTab(Exoskeleton.tab);
 
   override def onBlockActivated(world: World, x: Int, y: Int, z: Int, player: EntityPlayer, p_149727_6_ : Int, p_149727_7_ : Float, p_149727_8_ : Float, p_149727_9_ : Float): Boolean = {
-    player.openGui(Exoskeleton, 1, world, x, y, z);
+    player.openGui(Exoskeleton, 2, world, x, y, z);
     return true;
   }
 

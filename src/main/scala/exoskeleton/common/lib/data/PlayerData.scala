@@ -13,6 +13,7 @@ extends ISaveable{
   private var allowFlight: Boolean = false;
   private var thermalOn: Boolean = false;
   private var nightVision: Boolean = false;
+  private var xrayVision: Boolean = false;
 
   def setRecallPoint(vec: Vector3): Unit ={
     this.recallPoint = vec;
@@ -66,6 +67,14 @@ extends ISaveable{
     return this.nightVision;
   }
 
+  def setXRay(b: Boolean): Unit ={
+    this.xrayVision = b;
+  }
+
+  def xray(): Boolean={
+    return this.xrayVision;
+  }
+
   override def readFromNBT(comp: NBTTagCompound): Unit ={
     this.recallPoint = Vector3.of(comp.getCompoundTag("recallPoint"));
     this.lastPlace = Vector3.of(comp.getCompoundTag("backtrackPos"));
@@ -73,6 +82,7 @@ extends ISaveable{
     this.allowFlight = comp.getBoolean("allowFlight");
     this.thermalOn = comp.getBoolean("thermalOn");
     this.nightVision = comp.getBoolean("nightVision");
+    this.xrayVision = comp.getBoolean("xray");
   }
 
   override def writeToNBT(comp: NBTTagCompound): Unit ={
@@ -88,5 +98,6 @@ extends ISaveable{
     comp.setBoolean("allowFlight", this.allowFlight);
     comp.setBoolean("thermalOn", this.thermalOn);
     comp.setBoolean("nightVision", this.nightVision);
+    comp.setBoolean("xray", this.xrayVision);
   }
 }

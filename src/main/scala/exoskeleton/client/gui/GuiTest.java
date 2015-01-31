@@ -7,6 +7,7 @@ import exoskeleton.common.lib.skills.SkillsManager;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public class GuiTest
@@ -50,7 +51,7 @@ extends GuiScreen{
             if(SkillsManager.unlocked(player, tree, skill)){
                 tree.bindColor();
             } else{
-                GL11.glColor4f(1.0F, 0.0F, 0.0F, 1.0F);
+                bindColor(0xFF0000);
             }
 
             this.drawPoint(skill.x + 100, skill.y + 100);
@@ -58,9 +59,10 @@ extends GuiScreen{
 
         Skill skill = this.find(x, y);
         if(skill != null){
-            int width = this.fontRendererObj.getStringWidth(skill.tag);
+            String str = StatCollector.translateToLocal("exoskeleton.skill." + skill.tag);
+            int width = this.fontRendererObj.getStringWidth(str);
             drawColoredQuad(0x000000, 255, x + 10, y, width + 10, this.fontRendererObj.FONT_HEIGHT);
-            this.fontRendererObj.drawString(skill.tag, x + 15, y, 0xFFFFFF);
+            this.fontRendererObj.drawString(str, x + 15, y, 0xFFFFFF);
         }
     }
 

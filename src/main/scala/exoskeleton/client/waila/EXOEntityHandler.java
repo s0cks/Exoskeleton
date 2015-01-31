@@ -36,6 +36,6 @@ implements IWailaEntityProvider{
     }
 
     public static void register(IWailaRegistrar registrar){
-        registrar.registerBodyProvider(new EXOEntityHandler(), EntityPlayer.class);
+        registrar.registerBodyProvider(new EXOEntityHandler(), Entity.class);
     }
 }

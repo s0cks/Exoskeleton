@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import exoskeleton.api.Core;
 import exoskeleton.api.ExoskeletonCores;
+import exoskeleton.common.core.CoreBulldozer$;
 import exoskeleton.common.core.CoreGhost$;
 import exoskeleton.common.core.CoreInferno$;
 import exoskeleton.common.core.CoreRecon$;
@@ -29,6 +30,7 @@ extends GuiScreen{
         this.buttonList.add(new GuiButton(2, 10, 50, "Inferno"));
         this.buttonList.add(new GuiButton(3, 10, 70, "Ghost"));
         this.buttonList.add(new GuiButton(4, 10, 90, "Skybound"));
+        this.buttonList.add(new GuiButton(5, 10, 110, "Bulldozer"));
     }
 
     @Override
@@ -69,6 +71,11 @@ extends GuiScreen{
 
             case 4:{
                 ExoskeletonCores.installCore(stack, CoreSkybound$.MODULE$);
+                break;
+            }
+
+            case 5:{
+                ExoskeletonCores.installCore(stack, CoreBulldozer$.MODULE$);
                 break;
             }
         }

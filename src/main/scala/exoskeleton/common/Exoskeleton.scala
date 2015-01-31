@@ -9,6 +9,9 @@ import exoskeleton.common.core._
 import exoskeleton.common.handler._
 import exoskeleton.common.network.PacketHandler
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.entity.monster.{EntitySkeleton, EntitySpider, EntityZombie}
+import net.minecraft.entity.passive.EntitySquid
+import net.minecraft.init.Blocks
 import net.minecraft.item.Item
 import net.minecraftforge.common.MinecraftForge
 import org.apache.logging.log4j.LogManager
@@ -64,10 +67,12 @@ object Exoskeleton{
     ExoskeletonCores.registerCore(CoreGhost);
     ExoskeletonCores.registerCore(CoreReflex);
     ExoskeletonCores.registerCore(CoreMedic);
-
-    ExoskeletonAPI.event_bus.register(EXOEventHandler);
+    ExoskeletonCores.registerCore(CoreBulldozer);
 
     proxy.registerRenders();
+
+    this.addXRays();
+    this.addThermalMappings();
 
     NetworkRegistry.INSTANCE.registerGuiHandler(this, ExoGuiHandler);
     PacketHandler.init();
@@ -78,5 +83,24 @@ object Exoskeleton{
     e.registerServerCommand(new CommandGiveSkill());
     e.registerServerCommand(new CommandRemoveSkill());
     e.registerServerCommand(new CommandSetRecall());
+  }
+
+  private def addXRays(): Unit ={
+    ExoskeletonAPI.addOreXRay(Blocks.coal_ore);
+    ExoskeletonAPI.addOreXRay(Blocks.diamond_ore);
+    ExoskeletonAPI.addOreXRay(Blocks.emerald_ore);
+    ExoskeletonAPI.addOreXRay(Blocks.gold_ore);
+    ExoskeletonAPI.addOreXRay(Blocks.iron_ore);
+    ExoskeletonAPI.addOreXRay(Blocks.lapis_ore);
+    ExoskeletonAPI.addOreXRay(Blocks.lit_redstone_ore);
+    ExoskeletonAPI.addOreXRay(Blocks.quartz_ore);
+    ExoskeletonAPI.addOreXRay(Blocks.redstone_ore);
+  }
+
+  private def addThermalMappings(): Unit ={
+    ExoskeletonAPI.applyThermalMappingToEntity(classOf[EntitySquid]);
+    ExoskeletonAPI.applyThermalMappingToEntity(classOf[EntityZombie]);
+    ExoskeletonAPI.applyThermalMappingToEntity(classOf[EntitySpider]);
+    ExoskeletonAPI.applyThermalMappingToEntity(classOf[EntitySkeleton]);
   }
 }

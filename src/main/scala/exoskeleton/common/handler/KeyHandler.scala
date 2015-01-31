@@ -69,6 +69,8 @@ object KeyHandler{
           PacketHandler.instance.sendToServer(new PacketToggleThermal);
         } else if(ArmorHelper.nightVision(e.player)){
           PacketHandler.instance.sendToServer(new PacketToggleNightVision);
+        } else if(ArmorHelper.xray(e.player)){
+          PacketHandler.instance.sendToServer(new PacketToggleXRay);
         }
       }
     }

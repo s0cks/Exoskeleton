@@ -3,14 +3,12 @@ package exoskeleton.client
 import cpw.mods.fml.client.FMLClientHandler
 import cpw.mods.fml.client.registry.{ClientRegistry, RenderingRegistry}
 import cpw.mods.fml.common.FMLCommonHandler
-import exoskeleton.client.render.entity.RenderEVCreeper
 import exoskeleton.client.render.item._
 import exoskeleton.client.render.tile.{RenderTileAssembler, RenderTileModifier, RenderTileToolbox}
 import exoskeleton.common.block.{BlockAssembler, BlockModifier, BlockToolbox}
-import exoskeleton.common.handler.{ThermalHandler, NetworkDataHandler, NightVisionHandler, KeyHandler}
+import exoskeleton.common.handler._
 import exoskeleton.common.tile.{TileEntityAssembler, TileEntityModifier, TileEntityToolbox}
-import exoskeleton.common.{ExoConfiguration, CommonProxy, ExoItems}
-import net.minecraft.entity.monster.EntityCreeper
+import exoskeleton.common.{CommonProxy, ExoItems}
 import net.minecraft.item.Item
 import net.minecraft.world.World
 import net.minecraftforge.client.MinecraftForgeClient
@@ -42,10 +40,6 @@ extends CommonProxy{
     MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorChest, new RenderItemExoChest());
     MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorHelm, new RenderItemExoHelm());
     MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorLegs, new RenderItemExoLegs());
-
-    if(ExoConfiguration.adv_vision){
-      RenderingRegistry.registerEntityRenderingHandler(classOf[EntityCreeper], new RenderEVCreeper);
-    }
   }
 
   override def registerHandlers(): Unit ={
@@ -54,6 +48,9 @@ extends CommonProxy{
 
     MinecraftForge.EVENT_BUS.register(NightVisionHandler);
     MinecraftForge.EVENT_BUS.register(ThermalHandler);
+    MinecraftForge.EVENT_BUS.register(ThermalHeatMapper.instance());
+    MinecraftForge.EVENT_BUS.register(XRayHandler);
+    MinecraftForge.EVENT_BUS.register(XRayOreMapper.instance());
   }
 
   override def getClientWorld(): World={
