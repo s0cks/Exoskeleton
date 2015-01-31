@@ -3,7 +3,7 @@ package exoskeleton.common
 import cpw.mods.fml.common.event._
 import cpw.mods.fml.common.network.NetworkRegistry
 import cpw.mods.fml.common.{FMLCommonHandler, Mod, SidedProxy}
-import exoskeleton.api.{ExoskeletonAPI, ExoskeletonCores}
+import exoskeleton.api.{HeatValue, ExoskeletonAPI, ExoskeletonCores}
 import exoskeleton.common.command.{CommandGiveSkill, CommandRemoveSkill, CommandSetRecall}
 import exoskeleton.common.core._
 import exoskeleton.common.handler._
@@ -71,8 +71,9 @@ object Exoskeleton{
 
     proxy.registerRenders();
 
-    this.addXRays();
+    this.addXRaysMappings();
     this.addThermalMappings();
+    this.addHeatMappings();
 
     NetworkRegistry.INSTANCE.registerGuiHandler(this, ExoGuiHandler);
     PacketHandler.init();
@@ -85,22 +86,34 @@ object Exoskeleton{
     e.registerServerCommand(new CommandSetRecall());
   }
 
-  private def addXRays(): Unit ={
-    ExoskeletonAPI.addOreXRay(Blocks.coal_ore);
-    ExoskeletonAPI.addOreXRay(Blocks.diamond_ore);
-    ExoskeletonAPI.addOreXRay(Blocks.emerald_ore);
-    ExoskeletonAPI.addOreXRay(Blocks.gold_ore);
-    ExoskeletonAPI.addOreXRay(Blocks.iron_ore);
-    ExoskeletonAPI.addOreXRay(Blocks.lapis_ore);
-    ExoskeletonAPI.addOreXRay(Blocks.lit_redstone_ore);
-    ExoskeletonAPI.addOreXRay(Blocks.quartz_ore);
-    ExoskeletonAPI.addOreXRay(Blocks.redstone_ore);
+  private def addHeatMappings(): Unit ={
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.lava, HeatValue.VERY_HOT);
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.flowing_lava, HeatValue.VERY_HOT);
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.fire, HeatValue.HOT);
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.flowing_water, HeatValue.COLD);
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.water, HeatValue.COLD);
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.torch, HeatValue.HOT);
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.brewing_stand, HeatValue.HOT);
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.ice, HeatValue.FREEZING);
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.packed_ice, HeatValue.FREEZING);
+  }
+
+  private def addXRaysMappings(): Unit ={
+    ExoskeletonAPI.applyXRayMappingToBlock(Blocks.coal_ore);
+    ExoskeletonAPI.applyXRayMappingToBlock(Blocks.diamond_ore);
+    ExoskeletonAPI.applyXRayMappingToBlock(Blocks.emerald_ore);
+    ExoskeletonAPI.applyXRayMappingToBlock(Blocks.gold_ore);
+    ExoskeletonAPI.applyXRayMappingToBlock(Blocks.iron_ore);
+    ExoskeletonAPI.applyXRayMappingToBlock(Blocks.lapis_ore);
+    ExoskeletonAPI.applyXRayMappingToBlock(Blocks.lit_redstone_ore);
+    ExoskeletonAPI.applyXRayMappingToBlock(Blocks.quartz_ore);
+    ExoskeletonAPI.applyXRayMappingToBlock(Blocks.redstone_ore);
   }
 
   private def addThermalMappings(): Unit ={
-    ExoskeletonAPI.applyThermalMappingToEntity(classOf[EntitySquid]);
-    ExoskeletonAPI.applyThermalMappingToEntity(classOf[EntityZombie]);
-    ExoskeletonAPI.applyThermalMappingToEntity(classOf[EntitySpider]);
-    ExoskeletonAPI.applyThermalMappingToEntity(classOf[EntitySkeleton]);
+    ExoskeletonAPI.applyThermalBlacklistToEntity(classOf[EntitySquid]);
+    ExoskeletonAPI.applyThermalBlacklistToEntity(classOf[EntityZombie]);
+    ExoskeletonAPI.applyThermalBlacklistToEntity(classOf[EntitySpider]);
+    ExoskeletonAPI.applyThermalBlacklistToEntity(classOf[EntitySkeleton]);
   }
 }

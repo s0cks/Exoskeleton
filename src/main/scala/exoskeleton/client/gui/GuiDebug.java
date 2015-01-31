@@ -7,6 +7,7 @@ import exoskeleton.api.ExoskeletonCores;
 import exoskeleton.common.core.CoreBulldozer$;
 import exoskeleton.common.core.CoreGhost$;
 import exoskeleton.common.core.CoreInferno$;
+import exoskeleton.common.core.CoreMystic$;
 import exoskeleton.common.core.CoreRecon$;
 import exoskeleton.common.core.CoreReflex$;
 import exoskeleton.common.core.CoreSkybound$;
@@ -31,6 +32,7 @@ extends GuiScreen{
         this.buttonList.add(new GuiButton(3, 10, 70, "Ghost"));
         this.buttonList.add(new GuiButton(4, 10, 90, "Skybound"));
         this.buttonList.add(new GuiButton(5, 10, 110, "Bulldozer"));
+        this.buttonList.add(new GuiButton(6, 10, 130, "Mystic"));
     }
 
     @Override
@@ -76,6 +78,11 @@ extends GuiScreen{
 
             case 5:{
                 ExoskeletonCores.installCore(stack, CoreBulldozer$.MODULE$);
+                break;
+            }
+
+            case 6:{
+                ExoskeletonCores.installCore(stack, CoreMystic$.MODULE$);
                 break;
             }
         }

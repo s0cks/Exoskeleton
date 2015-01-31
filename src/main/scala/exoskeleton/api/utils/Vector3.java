@@ -45,6 +45,27 @@ implements ISaveable{
         return this.z;
     }
 
+    public Vector3 normalize(){
+        double mag = this.magnitude();
+        if(mag != 0){
+            return this.multiply(1 / mag);
+        }
+
+        return this;
+    }
+
+    public Vector3 multiply(double mag){
+        return new Vector3(this.x * mag, this.y * mag, this.z * mag);
+    }
+
+    public double magnitude(){
+        return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+    }
+
+    public Vector3 subtract(Vector3 vec){
+        return Vector3.of(this.x - vec.x, this.y - vec.y, this.z - vec.z);
+    }
+
     public void teleportPlayer(EntityPlayer player){
         player.setPositionAndUpdate(this.x, this.y, this.z);
     }

@@ -12,6 +12,10 @@ object ExoItems{
   val itemCoreReflex = new ItemCore(CoreReflex);
   val itemCoreMedic = new ItemCore(CoreMedic);
   val itemCoreBulldozer = new ItemCore(CoreBulldozer);
+  val itemCoreAssassin = new ItemCore(CoreAssassin);
+  val itemCoreFrost = new ItemCore(CoreFrost);
+  val itemCoreMystic = new ItemCore(CoreMystic);
+  val itemCoreBerzerk = new ItemCore(CoreBerzerk);
 
   val itemExoArmorHelm: ItemExoHelmet = new ItemExoHelmet();
   val itemExoArmorChest: ItemExoChestplate = new ItemExoChestplate();
@@ -26,6 +30,10 @@ object ExoItems{
     GameRegistry.registerItem(this.itemCoreReflex, "itemCoreReflex");
     GameRegistry.registerItem(this.itemCoreMedic, "itemCoreMedic");
     GameRegistry.registerItem(this.itemCoreBulldozer, "itemCoreBulldozer");
+    GameRegistry.registerItem(this.itemCoreAssassin, "itemCoreAssassin");
+    GameRegistry.registerItem(this.itemCoreFrost, "itemCoreFrost");
+    GameRegistry.registerItem(this.itemCoreMystic, "itemCoreMystic");
+    GameRegistry.registerItem(this.itemCoreBerzerk, "itemCoreBerzerk");
 
     GameRegistry.registerItem(this.itemExoArmorBoots, "itemExoArmorBoots");
     GameRegistry.registerItem(this.itemExoArmorChest, "itemExoArmorChest");

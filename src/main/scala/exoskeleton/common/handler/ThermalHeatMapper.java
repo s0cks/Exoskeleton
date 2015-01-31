@@ -34,8 +34,6 @@ public class ThermalHeatMapper{
     private void renderHeatMap(Entity e){
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_LIGHTING);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
         World world = e.worldObj;
         int range = 16;
@@ -50,8 +48,10 @@ public class ThermalHeatMapper{
 
                     if(value != null){
                         GL11.glPushMatrix();
-                        value.bind();
-                        RenderUtils.renderQuad(i, j, k);
+                        GL11.glEnable(GL11.GL_BLEND);
+                        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                        RenderUtils.drawCubeAt(i, j, k, value.color, 100);
+                        GL11.glDisable(GL11.GL_BLEND);
                         GL11.glPopMatrix();
                     }
                 }

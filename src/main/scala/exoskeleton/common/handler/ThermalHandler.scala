@@ -42,7 +42,7 @@ object ThermalHandler{
       val range = 24 / 2;
       val entities = world.getEntitiesWithinAABBExcludingEntity(p, p.boundingBox.expand(range, range, range));
       for(e: Entity <- entities.asInstanceOf[util.List[Entity]]){
-        if(e.isInstanceOf[EntityLiving] && ExoskeletonAPI.hasThermalMapping(e.getClass())){
+        if(e.isInstanceOf[EntityLiving] && !ExoskeletonAPI.hasThermalBlacklist(e.getClass())){
           GL11.glPushMatrix();
           GL11.glTranslated(e.posX, e.posY, e.posZ);
           GL11.glEnable(GL11.GL_BLEND);

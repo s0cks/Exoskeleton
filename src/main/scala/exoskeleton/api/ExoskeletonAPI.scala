@@ -5,12 +5,14 @@ import java.util
 
 import net.minecraft.block.Block
 import net.minecraft.entity.EntityLiving
+import net.minecraft.item.Item
 ;
 
 object ExoskeletonAPI{
   private val heatMap = new util.HashMap[Block, HeatValue]();
   private val oreXRayMap = new util.LinkedList[Block]();
-  private val thermalMap = new util.LinkedList[Class[_ <: EntityLiving]]();
+  private val thermalBlacklist = new util.LinkedList[Class[_ <: EntityLiving]]();
+  private val magnetBlacklist = new util.LinkedList[Class[_ <: Item]]();
 
   val event_bus = new EventBus()
 
@@ -22,7 +24,7 @@ object ExoskeletonAPI{
     }
   }
 
-  def addHeatValue(b: Block, v: HeatValue): Unit ={
+  def applyHeatMappingValueToBlock(b: Block, v: HeatValue): Unit ={
     this.heatMap.put(b, v);
   }
 
@@ -30,15 +32,23 @@ object ExoskeletonAPI{
     return this.oreXRayMap.contains(b);
   }
 
-  def addOreXRay(b: Block): Unit ={
+  def applyXRayMappingToBlock(b: Block): Unit ={
     this.oreXRayMap.add(b);
   }
 
-  def applyThermalMappingToEntity(c: Class[_ <: EntityLiving]): Unit ={
-    this.thermalMap.add(c);
+  def applyThermalBlacklistToEntity(c: Class[_ <: EntityLiving]): Unit ={
+    this.thermalBlacklist.add(c);
   }
 
-  def hasThermalMapping(c: Class[_]): Boolean={
-    return this.thermalMap.contains(c);
+  def hasThermalBlacklist(c: Class[_]): Boolean={
+    return this.thermalBlacklist.contains(c);
+  }
+
+  def blacklistItemFromMagnet(c: Class[_ <: Item]): Unit ={
+    this.magnetBlacklist.add(c);
+  }
+
+  def isItemBlacklistedFromMagnet(i: Item): Boolean={
+    return this.magnetBlacklist.contains(i.getClass);
   }
 }
