@@ -1,6 +1,6 @@
 package exoskeleton.common.lib.tree
 
-import exoskeleton.api.{Tree, Skill}
+import exoskeleton.api.{Skill, Tree}
 import net.minecraft.util.ResourceLocation
 
 object TreeMedic

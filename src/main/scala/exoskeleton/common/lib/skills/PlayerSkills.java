@@ -1,5 +1,6 @@
 package exoskeleton.common.lib.skills;
 
+import exoskeleton.common.Exoskeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -50,7 +51,7 @@ public final class PlayerSkills{
             }
 
             this.aquired.put(treeComp.getString("name"), skills);
-            System.out.println("Tree (" + treeComp.getString("name") + ") Loaded " + skills.size() + " skills");
+            Exoskeleton.logger().info("Tree (" + treeComp.getString("name") + ") Loaded " + skills.size() + " skills");
         }
     }
 

@@ -1,6 +1,6 @@
 package exoskeleton.common.item
 
-import cpw.mods.fml.relauncher.{SideOnly, Side}
+import cpw.mods.fml.relauncher.{Side, SideOnly}
 import exoskeleton.api.ExoskeletonTag
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.item.ItemStack

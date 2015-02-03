@@ -1,4 +1,4 @@
-package exoskeleton.common.network
+package exoskeleton.common.network.abilities
 
 import cpw.mods.fml.common.network.simpleimpl.{IMessage, IMessageHandler, MessageContext}
 import exoskeleton.common.handler.FadeHandler

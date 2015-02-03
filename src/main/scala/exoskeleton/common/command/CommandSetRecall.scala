@@ -2,9 +2,10 @@ package exoskeleton.common.command
 
 import exoskeleton.api.utils.Vector3
 import exoskeleton.common.lib.data.DataManager
-import exoskeleton.common.network.{PacketSyncPlayerData, PacketHandler}
+import exoskeleton.common.network.PacketHandler
+import exoskeleton.common.network.sync.PacketSyncPlayerData
 import net.minecraft.command.{CommandBase, ICommandSender}
-import net.minecraft.entity.player.{EntityPlayerMP, EntityPlayer}
+import net.minecraft.entity.player.{EntityPlayer, EntityPlayerMP}
 import net.minecraft.util.ChatComponentText
 
 class CommandSetRecall

@@ -13,6 +13,7 @@ object ExoConfiguration{
     this.config = new Configuration(file);
     this.config.load();
     this.adv_vision = this.config.getBoolean("adv_vision", "settings", true, "Enable for texture overrides");
+    this.xray_color = Integer.parseInt(this.config.getString("xray_color", "settings", "FFFFFF", "Change the xray line colour"), 16);
     this.config.save();
   }
 

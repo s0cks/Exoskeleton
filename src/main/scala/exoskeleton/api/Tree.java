@@ -1,7 +1,7 @@
 package exoskeleton.api;
 
+import exoskeleton.api.utils.RenderUtils;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,9 +24,6 @@ public class Tree{
     }
 
     public void bindColor(){
-        float red = (this.color >> 16 & 255) / 255.0F;
-        float green = (this.color >> 8 & 255) / 255.0F;
-        float blue = (this.color & 255) / 255.0F;
-        GL11.glColor4f(red, green, blue, 1.0F);
+        RenderUtils.bindColor(this.color);
     }
 }

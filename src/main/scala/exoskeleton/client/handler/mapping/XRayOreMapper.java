@@ -1,4 +1,4 @@
-package exoskeleton.common.handler;
+package exoskeleton.client.handler.mapping;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -48,8 +48,7 @@ public final class XRayOreMapper{
                 for(int j = y - range; j < y + range; j++){
                     if(ExoskeletonAPI.isXRayable(world.getBlock(i, j, k))){
                         GL11.glPushMatrix();
-                        RenderUtils.bindColor(ExoConfiguration.xray_color());
-                        RenderUtils.renderWireframe(i, j, k);
+                        RenderUtils.renderWireframe(i, j, k, ExoConfiguration.xray_color());
                         GL11.glPopMatrix();
                     }
                 }

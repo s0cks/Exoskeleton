@@ -6,7 +6,7 @@ import exoskeleton.common.item.ItemExoArmor
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.item.ItemStack
 import net.minecraftforge.client.IItemRenderer
-import net.minecraftforge.client.IItemRenderer.{ItemRendererHelper, ItemRenderType}
+import net.minecraftforge.client.IItemRenderer.{ItemRenderType, ItemRendererHelper}
 import org.lwjgl.opengl.GL11
 
 class RenderItemExoHelm

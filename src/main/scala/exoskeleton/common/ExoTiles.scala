@@ -1,7 +1,7 @@
 package exoskeleton.common
 
 import cpw.mods.fml.common.registry.GameRegistry
-import exoskeleton.common.tile.{TileEntityModifier, TileEntityAssembler, TileEntityToolbox}
+import exoskeleton.common.tile.{TileEntityAssembler, TileEntityModifier, TileEntityToolbox}
 
 object ExoTiles{
   def init(): Unit ={

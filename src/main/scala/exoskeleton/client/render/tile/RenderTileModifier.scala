@@ -18,18 +18,13 @@ class RenderTileModifier(val id: Int)
 extends TileEntitySpecialRenderer
 with ISimpleBlockRenderingHandler
 with IItemRenderer{
-  private val model: IModelCustom = AdvancedModelLoader.loadModel(new ResourceLocation("exo", "models/modifier.tcn"));
-  private val texture: ResourceLocation = new ResourceLocation("exo", "textures/blocks/modifier.png");
-
   override def renderTileEntityAt(te: TileEntity, x : Double, y : Double, z : Double, scale : Float): Unit ={
-    this.bindTexture(this.texture);
     val tile: TileEntityModifier = te.asInstanceOf[TileEntityModifier];
     GL11.glPushMatrix();
     GL11.glTranslated(x + 0.5D, y + 0.05D, z + 0.5D);
     GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
     GL11.glRotatef(tile.rotation, 0.0F, 1.0F, 0.0F);
     GL11.glScalef(0.05F, 0.05F, 0.05F);
-    this.model.renderAll();
     GL11.glPopMatrix();
   }
 
@@ -42,7 +37,6 @@ with IItemRenderer{
   }
 
   override def renderItem(`type`: ItemRenderType, item: ItemStack, data: AnyRef*): Unit ={
-    this.bindTexture(this.texture);
   }
 
   override def renderInventoryBlock(block: Block, metadata: Int, modelId: Int, renderer: RenderBlocks): Unit ={

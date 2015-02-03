@@ -3,7 +3,8 @@ package exoskeleton.common.handler
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import cpw.mods.fml.common.gameevent.TickEvent.{Phase, PlayerTickEvent}
 import exoskeleton.common.lib.data.DataManager
-import exoskeleton.common.network.{PacketSyncPlayerData, PacketHandler}
+import exoskeleton.common.network.PacketHandler
+import exoskeleton.common.network.sync.PacketSyncPlayerData
 import net.minecraft.entity.player.EntityPlayerMP
 
 object BacktrackHandler{

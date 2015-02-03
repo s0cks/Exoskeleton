@@ -1,4 +1,4 @@
-package exoskeleton.common.handler
+package exoskeleton.client.handler
 
 import java.util
 
@@ -55,7 +55,7 @@ object ThermalHandler{
           GL11.glEnable(GL11.GL_POLYGON_OFFSET_LINE);
           GL11.glPolygonOffset(-1.0F, -1.0F);
           GL11.glColorMask(true, false, false, false);
-          GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);;
+          RenderUtils.bindColor(0xFFFFFF);
           GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
           RenderManager.instance.getEntityRenderObject(e).doRender(e, 0.0F, 0.0F, 0.0F, 0.0F, ev.partialTicks);
           GL11.glColorMask(true, true, true, true);

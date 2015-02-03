@@ -3,6 +3,8 @@ package exoskeleton.client
 import cpw.mods.fml.client.FMLClientHandler
 import cpw.mods.fml.client.registry.{ClientRegistry, RenderingRegistry}
 import cpw.mods.fml.common.FMLCommonHandler
+import exoskeleton.client.handler.mapping.{ThermalHeatMapper, XRayOreMapper}
+import exoskeleton.client.handler.{AssassinHandler, NightVisionHandler, ThermalHandler, XRayHandler}
 import exoskeleton.client.render.item._
 import exoskeleton.client.render.tile.{RenderTileAssembler, RenderTileModifier, RenderTileToolbox}
 import exoskeleton.common.block.{BlockAssembler, BlockModifier, BlockToolbox}
@@ -47,8 +49,12 @@ extends CommonProxy{
     FMLCommonHandler.instance().bus().register(NetworkDataHandler);
 
     MinecraftForge.EVENT_BUS.register(NightVisionHandler);
+
     MinecraftForge.EVENT_BUS.register(ThermalHandler);
     MinecraftForge.EVENT_BUS.register(ThermalHeatMapper.instance());
+
+    MinecraftForge.EVENT_BUS.register(AssassinHandler);
+
     MinecraftForge.EVENT_BUS.register(XRayHandler);
     MinecraftForge.EVENT_BUS.register(XRayOreMapper.instance());
   }

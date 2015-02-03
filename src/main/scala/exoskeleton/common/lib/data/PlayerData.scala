@@ -14,6 +14,7 @@ extends ISaveable{
   private var thermalOn: Boolean = false;
   private var nightVision: Boolean = false;
   private var xrayVision: Boolean = false;
+  private var infiltrator: Boolean = false;
 
   def setRecallPoint(vec: Vector3): Unit ={
     this.recallPoint = vec;
@@ -75,6 +76,14 @@ extends ISaveable{
     return this.xrayVision;
   }
 
+  def setInfilrator(b: Boolean): Unit ={
+    this.infiltrator = b;
+  }
+
+  def infiltratorEnabled(): Boolean={
+    return this.infiltrator;
+  }
+
   override def readFromNBT(comp: NBTTagCompound): Unit ={
     this.recallPoint = Vector3.of(comp.getCompoundTag("recallPoint"));
     this.lastPlace = Vector3.of(comp.getCompoundTag("backtrackPos"));
@@ -83,6 +92,7 @@ extends ISaveable{
     this.thermalOn = comp.getBoolean("thermalOn");
     this.nightVision = comp.getBoolean("nightVision");
     this.xrayVision = comp.getBoolean("xray");
+    this.infiltrator = comp.getBoolean("infiltrator");
   }
 
   override def writeToNBT(comp: NBTTagCompound): Unit ={
@@ -99,5 +109,6 @@ extends ISaveable{
     comp.setBoolean("thermalOn", this.thermalOn);
     comp.setBoolean("nightVision", this.nightVision);
     comp.setBoolean("xray", this.xrayVision);
+    comp.setBoolean("infiltrator", this.infiltrator);
   }
 }

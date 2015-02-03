@@ -3,7 +3,7 @@ package exoskeleton.common.item
 import exoskeleton.api.Core
 import exoskeleton.common.Exoskeleton
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.item.{ItemStack, Item}
+import net.minecraft.item.{Item, ItemStack}
 import net.minecraft.util.IIcon
 
 class ItemCore(val core: Core)

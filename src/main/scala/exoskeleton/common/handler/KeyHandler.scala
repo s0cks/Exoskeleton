@@ -7,6 +7,7 @@ import cpw.mods.fml.common.gameevent.TickEvent.{Phase, PlayerTickEvent}
 import cpw.mods.fml.relauncher.Side
 import exoskeleton.common.lib.ArmorHelper
 import exoskeleton.common.network._
+import exoskeleton.common.network.abilities._
 import net.minecraft.client.settings.KeyBinding
 import org.lwjgl.input.Keyboard
 
@@ -34,9 +35,9 @@ object KeyHandler{
     if(e.phase == Phase.START){
       if(this.key_function.isPressed && FMLClientHandler.instance().getClient.inGameHasFocus){
         if(ArmorHelper.fadable(e.player)){
-          PacketHandler.instance.sendToServer(new PacketPlayerFade());
+          PacketHandler.instance.sendToServer(new PacketPlayerFade);
         } else if(ArmorHelper.flight(e.player)){
-          PacketHandler.instance.sendToServer(new PacketToggleFlight());
+          PacketHandler.instance.sendToServer(new PacketToggleFlight);
         }
       }
 
@@ -71,6 +72,8 @@ object KeyHandler{
           PacketHandler.instance.sendToServer(new PacketToggleNightVision);
         } else if(ArmorHelper.xray(e.player)){
           PacketHandler.instance.sendToServer(new PacketToggleXRay);
+        } else if(ArmorHelper.assassin(e.player)){
+          PacketHandler.instance.sendToServer(new PacketToggleEagleVision);
         }
       }
     }

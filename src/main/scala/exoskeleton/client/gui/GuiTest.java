@@ -2,6 +2,7 @@ package exoskeleton.client.gui;
 
 import exoskeleton.api.Skill;
 import exoskeleton.api.Tree;
+import exoskeleton.api.utils.RenderUtils;
 import exoskeleton.common.lib.skills.PlayerSkills;
 import exoskeleton.common.lib.skills.SkillsManager;
 import net.minecraft.client.gui.GuiScreen;
@@ -30,13 +31,13 @@ extends GuiScreen{
             if(skill.parents != null){
                 for(Skill s : skill.parents){
                     if(SkillsManager.unlocked(player, tree, s) && SkillsManager.unlocked(player, tree, skill)){
-                        bindColor(0xFFFFFF);
+                        RenderUtils.bindColor(0xFFFFFF);
                     } else if(SkillsManager.unlocked(player, tree, s) && !SkillsManager.unlocked(player, tree, skill)){
-                        bindColor(0xFFFFFF);
+                        RenderUtils.bindColor(0xFFFFFF);
                     } else if(!SkillsManager.unlocked(player, tree, s) && SkillsManager.unlocked(player, tree, skill)){
-                        bindColor(0xFFFFFF);
+                        RenderUtils.bindColor(0xFFFFFF);
                     } else{
-                        bindColor(0x000000);
+                        RenderUtils.bindColor(0x000000);
                     }
 
                     this.drawLine(s.x, s.y, skill.x, skill.y);
@@ -46,12 +47,11 @@ extends GuiScreen{
 
         for(Skill skill : this.tree.skills){
             this.mc.renderEngine.bindTexture(tree.marker);
-            this.tree.bindColor();
 
             if(SkillsManager.unlocked(player, tree, skill)){
                 tree.bindColor();
             } else{
-                bindColor(0xFF0000);
+                RenderUtils.bindColor(0xFF0000);
             }
 
             this.drawPoint(skill.x + 100, skill.y + 100);
@@ -61,7 +61,8 @@ extends GuiScreen{
         if(skill != null){
             String str = StatCollector.translateToLocal("exoskeleton.skill." + skill.tag);
             int width = this.fontRendererObj.getStringWidth(str);
-            drawColoredQuad(0x000000, 255, x + 10, y, width + 10, this.fontRendererObj.FONT_HEIGHT);
+            this.drawColoredQuad(0xFFFFFF, 255, x + 9, y, width + 11, this.fontRendererObj.FONT_HEIGHT);
+            this.drawColoredQuad(0x000000, 255, x + 10, y, width + 10, this.fontRendererObj.FONT_HEIGHT);
             this.fontRendererObj.drawString(str, x + 15, y, 0xFFFFFF);
         }
     }
@@ -80,9 +81,7 @@ extends GuiScreen{
 
     private void drawLine(int x1, int y1, int x2, int y2) {
         GL11.glPushMatrix();
-
         GL11.glDisable(GL11.GL_TEXTURE_2D);
-
         GL11.glLineWidth(3);
 
         GL11.glBegin(GL11.GL_LINES);
@@ -90,18 +89,9 @@ extends GuiScreen{
         GL11.glVertex3f(108 + x2, 108 + y2, this.zLevel);
         GL11.glEnd();
 
-        GL11.glDisable(GL11.GL_BLEND);
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glPopMatrix();
-    }
-
-    private void bindColor(int color){
-        int r = (color >> 16 & 0xFF);
-        int g = (color >> 8 & 0xFF);
-        int b = (color & 0xFF);
-
-        GL11.glColor3f(r / 255, g / 255, b / 255);
     }
 
     private void drawColoredQuad(int color, int alpha, double x, double y, double width, double height){

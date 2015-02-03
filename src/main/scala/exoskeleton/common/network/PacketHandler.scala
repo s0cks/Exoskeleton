@@ -2,6 +2,8 @@ package exoskeleton.common.network
 
 import cpw.mods.fml.common.network.NetworkRegistry
 import cpw.mods.fml.relauncher.Side
+import exoskeleton.common.network.abilities._
+import exoskeleton.common.network.sync.{PacketSyncPlayerData, PacketSyncSkills}
 
 object PacketHandler{
   val instance = NetworkRegistry.INSTANCE.newSimpleChannel("exoskeleton");
@@ -18,5 +20,6 @@ object PacketHandler{
     instance.registerMessage(classOf[PacketToggleThermal], classOf[PacketToggleThermal], 0x8, Side.SERVER);
     instance.registerMessage(classOf[PacketToggleNightVision], classOf[PacketToggleNightVision], 0x9, Side.SERVER);
     instance.registerMessage(classOf[PacketToggleXRay], classOf[PacketToggleXRay], 0xA, Side.SERVER);
+    instance.registerMessage(classOf[PacketToggleEagleVision], classOf[PacketToggleEagleVision], 0xB, Side.SERVER);
   }
 }

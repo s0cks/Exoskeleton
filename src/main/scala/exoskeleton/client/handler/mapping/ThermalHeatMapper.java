@@ -1,4 +1,4 @@
-package exoskeleton.common.handler;
+package exoskeleton.client.handler.mapping;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -12,7 +12,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
-public class ThermalHeatMapper{
+public final class ThermalHeatMapper{
+    private ThermalHeatMapper(){}
+
     private static ThermalHeatMapper instance;
 
     public static ThermalHeatMapper instance(){

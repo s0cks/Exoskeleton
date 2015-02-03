@@ -3,7 +3,7 @@ package exoskeleton.common
 import cpw.mods.fml.common.event._
 import cpw.mods.fml.common.network.NetworkRegistry
 import cpw.mods.fml.common.{FMLCommonHandler, Mod, SidedProxy}
-import exoskeleton.api.{HeatValue, ExoskeletonAPI, ExoskeletonCores}
+import exoskeleton.api.{ExoskeletonAPI, ExoskeletonCores, HeatValue}
 import exoskeleton.common.command.{CommandGiveSkill, CommandRemoveSkill, CommandSetRecall}
 import exoskeleton.common.core._
 import exoskeleton.common.handler._
@@ -31,7 +31,7 @@ object Exoskeleton{
 
   val tab: CreativeTabs = new CreativeTabs("exoskeleton"){
     override def getTabIconItem: Item ={
-      return ExoItems.itemCoreRecon;
+      return ExoItems.itemExoArmorHelm;
     }
   };
   val logger = LogManager.getLogger("Exoskeleton");;
@@ -52,6 +52,19 @@ object Exoskeleton{
 
   @Mod.EventHandler
   def init(e: FMLInitializationEvent): Unit ={
+    ExoskeletonCores.registerCore(CoreRecon);
+    ExoskeletonCores.registerCore(CoreInferno);
+    ExoskeletonCores.registerCore(CoreSkybound);
+    ExoskeletonCores.registerCore(CoreGhost);
+    ExoskeletonCores.registerCore(CoreReflex);
+    ExoskeletonCores.registerCore(CoreMedic);
+    ExoskeletonCores.registerCore(CoreBulldozer);
+    ExoskeletonCores.registerCore(CoreAssassin);
+    ExoskeletonCores.registerCore(CoreFrost);
+    ExoskeletonCores.registerCore(CoreMystic);
+    ExoskeletonCores.registerCore(CoreBerzerk);
+
+    ExoskeletonCores.registerItems();
     ExoItems.init();
     ExoBlocks.init();
     ExoTiles.init();
@@ -61,14 +74,6 @@ object Exoskeleton{
 
   @Mod.EventHandler
   def postInit(e: FMLPostInitializationEvent): Unit ={
-    ExoskeletonCores.registerCore(CoreRecon);
-    ExoskeletonCores.registerCore(CoreInferno);
-    ExoskeletonCores.registerCore(CoreSkybound);
-    ExoskeletonCores.registerCore(CoreGhost);
-    ExoskeletonCores.registerCore(CoreReflex);
-    ExoskeletonCores.registerCore(CoreMedic);
-    ExoskeletonCores.registerCore(CoreBulldozer);
-
     proxy.registerRenders();
 
     this.addXRaysMappings();
@@ -96,6 +101,7 @@ object Exoskeleton{
     ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.brewing_stand, HeatValue.HOT);
     ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.ice, HeatValue.FREEZING);
     ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.packed_ice, HeatValue.FREEZING);
+    ExoskeletonAPI.applyHeatMappingValueToBlock(Blocks.lit_furnace, HeatValue.HOT);
   }
 
   private def addXRaysMappings(): Unit ={

@@ -1,4 +1,4 @@
-package exoskeleton.common.handler
+package exoskeleton.client.handler
 
 import cpw.mods.fml.client.FMLClientHandler
 import cpw.mods.fml.common.eventhandler.SubscribeEvent

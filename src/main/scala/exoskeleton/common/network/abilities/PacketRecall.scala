@@ -1,6 +1,6 @@
-package exoskeleton.common.network
+package exoskeleton.common.network.abilities
 
-import cpw.mods.fml.common.network.simpleimpl.{MessageContext, IMessageHandler, IMessage}
+import cpw.mods.fml.common.network.simpleimpl.{IMessage, IMessageHandler, MessageContext}
 import exoskeleton.common.lib.data.DataManager
 import io.netty.buffer.ByteBuf
 import net.minecraft.entity.player.EntityPlayer

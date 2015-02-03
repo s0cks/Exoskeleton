@@ -1,7 +1,8 @@
 package exoskeleton.core;
 
 public enum ObfuscationMappings{
-    ENTITY_ENDERMAN("net.minecraft.entity.monster.EntityEnderman", "ya");
+    ENTITY_ENDERMAN("net.minecraft.entity.monster.EntityEnderman", "ya"),
+    ITEM_BOW("net.minecraft.item.ItemBow", "abm");
 
     private final String deobfuscated;
     private final String obfuscated;

@@ -1,8 +1,8 @@
 package exoskeleton.api
 
-import com.google.common.eventbus.EventBus
 import java.util
 
+import com.google.common.eventbus.EventBus
 import net.minecraft.block.Block
 import net.minecraft.entity.EntityLiving
 import net.minecraft.item.Item

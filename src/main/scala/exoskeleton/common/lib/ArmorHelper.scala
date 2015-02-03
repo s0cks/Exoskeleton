@@ -2,7 +2,7 @@ package exoskeleton.common.lib
 
 import exoskeleton.api.ExoskeletonCores
 import exoskeleton.common.core._
-import exoskeleton.common.item.{ItemExoLeggings, ItemExoBoots, ItemExoChestplate, ItemExoHelmet}
+import exoskeleton.common.item.{ItemExoBoots, ItemExoChestplate, ItemExoHelmet, ItemExoLeggings}
 import exoskeleton.common.lib.skills.PlayerSkills
 import net.minecraft.block.material.Material
 import net.minecraft.entity.player.EntityPlayer
@@ -46,6 +46,12 @@ object ArmorHelper{
     return hasExoHelm(player) &&
            ExoskeletonCores.findCore(player.getCurrentArmor(3)) == CoreBulldozer &&
            PlayerSkills.get(player).hasSkill("bulldozer", "xray");
+  }
+
+  def assassin(player: EntityPlayer): Boolean={
+    return hasExoHelm(player) &&
+           ExoskeletonCores.findCore(player.getCurrentArmor(3)) == CoreAssassin &&
+           PlayerSkills.get(player).hasSkill("assassin", "eagleVision");
   }
 
   def recallable(player: EntityPlayer): Boolean={

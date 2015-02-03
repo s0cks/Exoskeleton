@@ -1,9 +1,10 @@
 package exoskeleton.common.command
 
 import exoskeleton.common.lib.skills.PlayerSkills
-import exoskeleton.common.network.{PacketSyncSkills, PacketHandler}
+import exoskeleton.common.network.PacketHandler
+import exoskeleton.common.network.sync.PacketSyncSkills
 import net.minecraft.command.{CommandBase, ICommandSender}
-import net.minecraft.entity.player.{EntityPlayerMP, EntityPlayer}
+import net.minecraft.entity.player.{EntityPlayer, EntityPlayerMP}
 
 class CommandGiveSkill
 extends CommandBase{

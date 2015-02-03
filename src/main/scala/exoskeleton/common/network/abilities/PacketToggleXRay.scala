@@ -1,9 +1,11 @@
-package exoskeleton.common.network
+package exoskeleton.common.network.abilities
 
-import cpw.mods.fml.common.network.simpleimpl.{MessageContext, IMessageHandler, IMessage}
+import cpw.mods.fml.common.network.simpleimpl.{IMessage, IMessageHandler, MessageContext}
 import exoskeleton.common.lib.data.DataManager
+import exoskeleton.common.network.PacketHandler
+import exoskeleton.common.network.sync.PacketSyncPlayerData
 import io.netty.buffer.ByteBuf
-import net.minecraft.entity.player.{EntityPlayerMP, EntityPlayer}
+import net.minecraft.entity.player.{EntityPlayer, EntityPlayerMP}
 
 class PacketToggleXRay
 extends IMessage
