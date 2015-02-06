@@ -30,6 +30,12 @@ object ArmorHelper{
            PlayerSkills.get(player).hasSkill("ghost", "fade");
   }
 
+  def camo(player: EntityPlayer): Boolean={
+    return hasExoChest(player) &&
+           ExoskeletonCores.findCore(player.getCurrentArmor(2)) == CoreAssassin &&
+           PlayerSkills.get(player).hasSkill("assassin", "camo");
+  }
+
   def nightVision(player: EntityPlayer): Boolean={
     return hasExoHelm(player) &&
            ExoskeletonCores.findCore(player.getCurrentArmor(3)) == CoreRecon &&

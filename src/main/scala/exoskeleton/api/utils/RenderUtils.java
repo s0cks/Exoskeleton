@@ -1,12 +1,24 @@
 package exoskeleton.api.utils;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RenderUtils{
     public static final double OFFSET_CONSTANT = 0.001;
+
+    private static final Map<ForgeDirection, Integer> FACE_MAP = new HashMap<ForgeDirection, Integer>(){
+        {
+            this.put(ForgeDirection.UP, 1);
+            this.put(ForgeDirection.DOWN, 0);
+        }
+    };
 
     public static void drawColoredQuad(int color, int alpha, double x, double y, double width, double height){
         Tessellator tess = Tessellator.instance;
@@ -44,6 +56,71 @@ public class RenderUtils{
         for (ForgeDirection face : ForgeDirection.VALID_DIRECTIONS) {
             drawQuadOnFace(x, y, z, face, color, alpha);
         }
+    }
+
+    public static void drawCubeAt(double offset, int x, int y, int z, Block b, int meta){
+        for(ForgeDirection face : ForgeDirection.VALID_DIRECTIONS){
+            drawQuadOnFace(offset, x, y, z, face, b.getIcon(face.ordinal(), meta));
+        }
+    }
+
+    public static void drawQuadOnFace(double OFFSET_CONSTANT, int x, int y, int z, ForgeDirection face, IIcon icon){
+        Tessellator tess = Tessellator.instance;
+        tess.startDrawingQuads();
+
+        switch(face) {
+            case UP: {
+                tess.addVertexWithUV(x, y + 1 + OFFSET_CONSTANT, z, icon.getMinU(), icon.getMinV());
+                tess.addVertexWithUV(x, y + 1 + OFFSET_CONSTANT, z + 1, icon.getMinU(), icon.getMaxV());
+                tess.addVertexWithUV(x + 1, y + 1 + OFFSET_CONSTANT, z + 1, icon.getMaxU(), icon.getMaxV());
+                tess.addVertexWithUV(x + 1, y + 1 + OFFSET_CONSTANT, z, icon.getMaxU(), icon.getMinV());
+                break;
+            }
+
+            case DOWN: {
+                tess.addVertexWithUV(x + 1, y - OFFSET_CONSTANT, z, icon.getMinU(), icon.getMinV());
+                tess.addVertexWithUV(x + 1, y - OFFSET_CONSTANT, z + 1, icon.getMinU(), icon.getMaxV());
+                tess.addVertexWithUV(x, y - OFFSET_CONSTANT, z + 1, icon.getMaxU(), icon.getMaxV());
+                tess.addVertexWithUV(x, y - OFFSET_CONSTANT, z, icon.getMaxU(), icon.getMinV());
+                break;
+            }
+
+            case EAST: {
+                tess.addVertexWithUV(x + 1 + OFFSET_CONSTANT, y,     z, icon.getMinU(), icon.getMinV());
+                tess.addVertexWithUV(x + 1 + OFFSET_CONSTANT, y + 1, z, icon.getMinU(), icon.getMaxV());
+                tess.addVertexWithUV(x + 1 + OFFSET_CONSTANT, y + 1, z + 1, icon.getMaxU(), icon.getMaxV());
+                tess.addVertexWithUV(x + 1 + OFFSET_CONSTANT, y,     z + 1, icon.getMaxU(), icon.getMinV());
+                break;
+            }
+
+            case NORTH: {
+                tess.addVertexWithUV(x,     y,     z - OFFSET_CONSTANT, icon.getMinU(), icon.getMinV());
+                tess.addVertexWithUV(x,     y + 1, z - OFFSET_CONSTANT, icon.getMinU(), icon.getMaxV());
+                tess.addVertexWithUV(x + 1, y + 1, z - OFFSET_CONSTANT, icon.getMaxU(), icon.getMaxV());
+                tess.addVertexWithUV(x + 1, y,     z - OFFSET_CONSTANT, icon.getMaxU(), icon.getMinV());
+                break;
+            }
+
+            case SOUTH: {
+                tess.addVertexWithUV(x + 1, y,     z + 1 + OFFSET_CONSTANT, icon.getMinU(), icon.getMinV());
+                tess.addVertexWithUV(x + 1, y + 1, z + 1 + OFFSET_CONSTANT, icon.getMinU(), icon.getMaxV());
+                tess.addVertexWithUV(x,     y + 1, z + 1 + OFFSET_CONSTANT, icon.getMaxU(), icon.getMaxV());
+                tess.addVertexWithUV(x,     y,     z + 1 + OFFSET_CONSTANT, icon.getMaxU(), icon.getMinV());
+                break;
+            }
+
+            case WEST: {
+                tess.addVertexWithUV(x - OFFSET_CONSTANT, y,     z + 1, icon.getMinU(), icon.getMinV());
+                tess.addVertexWithUV(x - OFFSET_CONSTANT, y + 1, z + 1, icon.getMinU(), icon.getMaxV());
+                tess.addVertexWithUV(x - OFFSET_CONSTANT, y + 1, z, icon.getMaxU(), icon.getMaxV());
+                tess.addVertexWithUV(x - OFFSET_CONSTANT, y,     z, icon.getMaxU(), icon.getMinV());
+                break;
+            }
+
+            default: break;
+        }
+
+        tess.draw();
     }
 
     public static void drawQuadOnFace(int x, int y, int z, ForgeDirection face, int color, int alpha){

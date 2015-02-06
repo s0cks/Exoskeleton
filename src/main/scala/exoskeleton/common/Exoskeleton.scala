@@ -4,6 +4,7 @@ import cpw.mods.fml.common.event._
 import cpw.mods.fml.common.network.NetworkRegistry
 import cpw.mods.fml.common.{FMLCommonHandler, Mod, SidedProxy}
 import exoskeleton.api.{ExoskeletonAPI, ExoskeletonCores, HeatValue}
+import exoskeleton.client.camo.{CamoNether, CamoDesert, CamoDefault}
 import exoskeleton.common.command.{CommandGiveSkill, CommandRemoveSkill, CommandSetRecall}
 import exoskeleton.common.core._
 import exoskeleton.common.handler._
@@ -13,6 +14,7 @@ import net.minecraft.entity.monster.{EntitySkeleton, EntitySpider, EntityZombie}
 import net.minecraft.entity.passive.EntitySquid
 import net.minecraft.init.Blocks
 import net.minecraft.item.Item
+import net.minecraft.world.biome.BiomeGenBase
 import net.minecraftforge.common.MinecraftForge
 import org.apache.logging.log4j.LogManager
 
@@ -76,6 +78,7 @@ object Exoskeleton{
   def postInit(e: FMLPostInitializationEvent): Unit ={
     proxy.registerRenders();
 
+    this.registerCamouflages();
     this.addXRaysMappings();
     this.addThermalMappings();
     this.addHeatMappings();
@@ -89,6 +92,13 @@ object Exoskeleton{
     e.registerServerCommand(new CommandGiveSkill());
     e.registerServerCommand(new CommandRemoveSkill());
     e.registerServerCommand(new CommandSetRecall());
+  }
+
+  private def registerCamouflages(): Unit ={
+    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.plains, new CamoDefault);
+    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.desert, new CamoDesert);;
+    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.desertHills, new CamoDesert);
+    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.hell, new CamoNether);
   }
 
   private def addHeatMappings(): Unit ={

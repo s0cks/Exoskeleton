@@ -21,5 +21,6 @@ object PacketHandler{
     instance.registerMessage(classOf[PacketToggleNightVision], classOf[PacketToggleNightVision], 0x9, Side.SERVER);
     instance.registerMessage(classOf[PacketToggleXRay], classOf[PacketToggleXRay], 0xA, Side.SERVER);
     instance.registerMessage(classOf[PacketToggleEagleVision], classOf[PacketToggleEagleVision], 0xB, Side.SERVER);
+    instance.registerMessage(classOf[PacketToggleCamo], classOf[PacketToggleCamo], 0xC, Side.SERVER);
   }
 }
