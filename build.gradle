@@ -58,14 +58,14 @@ sourceSets{
 
         resources{
             srcDir "src/main/resources/"
-            include "assets/exoskeleton/lang/*.lang",
-                    "assets/exoskeleton/textures/*",
-                    "assets/exoskeleton/textures/blocks/*",
-                    "assets/exoskeleton/textures/guis/*",
-                    "assets/exoskeleton/textures/armor/*",
-                    "assets/exoskeleton/textures/items/*",
-                    "assets/exoskeleton/models/*",
-                    "assets/exoskeleton/font/*"
+            include "assets/exo/lang/*.lang",
+                    "assets/exo/textures/*",
+                    "assets/exo/textures/blocks/*",
+                    "assets/exo/textures/guis/*",
+                    "assets/exo/textures/armor/*",
+                    "assets/exo/textures/items/*",
+                    "assets/exo/models/*",
+                    "assets/exo/font/*"
         }
     }
 }
