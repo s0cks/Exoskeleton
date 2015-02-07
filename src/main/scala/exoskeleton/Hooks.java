@@ -2,6 +2,7 @@ package exoskeleton;
 
 import exoskeleton.api.ExoskeletonCores;
 import exoskeleton.common.core.CoreReflex$;
+import exoskeleton.common.lib.ArmorHelper;
 import exoskeleton.common.lib.skills.PlayerSkills;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,5 +27,13 @@ public class Hooks{
             double d1 = vec3.dotProduct(vec31);
             return d1 > 1.0D - 0.025D / d0 && player.canEntityBeSeen(enderman);
         }
+    }
+
+    public static boolean isPushedByWater(EntityPlayer entity){
+        if(PlayerSkills.get(entity).hasSkill("recon", "sturdy") && ArmorHelper.hasExoLegs(entity)){
+            return false;
+        }
+
+        return !entity.capabilities.isFlying;
     }
 }
