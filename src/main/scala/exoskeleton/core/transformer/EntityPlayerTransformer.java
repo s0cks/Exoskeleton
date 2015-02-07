@@ -9,7 +9,7 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-public class EntityTransformer
+public class EntityPlayerTransformer
 implements IClassTransformer{
     private static final Method method = new Method("isPushedByWater", "aC");
 
@@ -18,7 +18,7 @@ implements IClassTransformer{
         if(ObfuscationMappings.ENTITY_PLAYER.isOf(name)){
             ClassReader reader = new ClassReader(bits);
             ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES|ClassWriter.COMPUTE_MAXS);
-            EntityVisitor visitor = new EntityVisitor(writer);
+            EntityPlayerVisitor visitor = new EntityPlayerVisitor(writer);
             reader.accept(visitor, 0);
 
             return writer.toByteArray();
@@ -26,9 +26,9 @@ implements IClassTransformer{
         return bits;
     }
 
-    private final class EntityVisitor
+    private final class EntityPlayerVisitor
     extends ClassVisitor{
-        public EntityVisitor(ClassVisitor cv){
+        public EntityPlayerVisitor(ClassVisitor cv){
             super(Opcodes.ASM4, cv);
         }
 

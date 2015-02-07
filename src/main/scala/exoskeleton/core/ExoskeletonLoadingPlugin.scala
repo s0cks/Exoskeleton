@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.IFMLLoadingPlugin
 @IFMLLoadingPlugin.TransformerExclusions(Array("exoskeleton.core.", "scala."))
 class ExoskeletonLoadingPlugin
 extends IFMLLoadingPlugin{
-  override def getASMTransformerClass: Array[String] = Array("exoskeleton.core.transformer.EndermanTransformer", "exoskeleton.core.transformer.EntityTransformer");;
+  override def getASMTransformerClass: Array[String] = Array("exoskeleton.core.transformer.EndermanTransformer", "exoskeleton.core.transformer.EntityPlayerTransformer");;
   override def injectData(data: util.Map[String, AnyRef]): Unit ={}
   override def getModContainerClass: String = "exoskeleton.core.EXOModContainer";
   override def getAccessTransformerClass: String = null;
