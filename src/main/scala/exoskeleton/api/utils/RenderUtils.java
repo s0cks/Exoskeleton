@@ -58,14 +58,15 @@ public class RenderUtils{
         }
     }
 
-    public static void drawCubeAt(double offset, int x, int y, int z, Block b, int meta){
+    public static void drawCubeAt(double offset, int x, int y, int z, Block b, int meta, int brightness){
         for(ForgeDirection face : ForgeDirection.VALID_DIRECTIONS){
-            drawQuadOnFace(offset, x, y, z, face, b.getIcon(face.ordinal(), meta));
+            drawQuadOnFace(offset, x, y, z, face, b.getIcon(face.ordinal(), meta), brightness);
         }
     }
 
-    public static void drawQuadOnFace(double OFFSET_CONSTANT, int x, int y, int z, ForgeDirection face, IIcon icon){
+    public static void drawQuadOnFace(double OFFSET_CONSTANT, int x, int y, int z, ForgeDirection face, IIcon icon, int brightness){
         Tessellator tess = Tessellator.instance;
+        tess.setBrightness(brightness);
         tess.startDrawingQuads();
 
         switch(face) {
@@ -259,7 +260,7 @@ public class RenderUtils{
         GL11.glTranslated(-x, -y, -z);
     }
 
-    public static void renderWireframe(double x, double y, double z, int color){
+    public static void drawWireframe(double x, double y, double z, int color){
         int r = (color >> 16 & 0xFF);
         int g = (color >> 8 & 0xFF);
         int b = (color & 0xFF);
@@ -326,7 +327,7 @@ public class RenderUtils{
         GL11.glPopMatrix();
     }
 
-    public static void renderWireframe(double x, double y, double z){
+    public static void drawWireframe(double x, double y, double z){
         double minX = 0;
         double minY = 0;
         double minZ = 0;

@@ -1,5 +1,6 @@
 package exoskeleton.core.transformer;
 
+import exoskeleton.common.Exoskeleton;
 import exoskeleton.core.Method;
 import exoskeleton.core.ObfuscationMappings;
 import net.minecraft.launchwrapper.IClassTransformer;
@@ -16,6 +17,7 @@ implements IClassTransformer{
     @Override
     public byte[] transform(String name, String tName, byte[] bits){
         if(ObfuscationMappings.ENTITY_ENDERMAN.isOf(name)){
+            Exoskeleton.logger().info("Patching " + name + " class");
             ClassReader reader = new ClassReader(bits);
             ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES|ClassWriter.COMPUTE_MAXS);
             EndermanVisitor visitor = new EndermanVisitor(writer);
@@ -41,11 +43,11 @@ implements IClassTransformer{
                 return new MethodVisitor(Opcodes.ASM4, visitor){
                     @Override
                     public void visitCode(){
-                        System.out.println("Transforming " + name + " method");
+                        Exoskeleton.logger().info("Transforming " + name + " method");
                         this.visitVarInsn(Opcodes.ALOAD, 0);
                         this.visitVarInsn(Opcodes.ALOAD, 1);
                         this.visitMethodInsn(Opcodes.INVOKESTATIC, "exoskeleton/Hooks", "shouldAttackPlayer",
-                                "(Lnet/minecraft/entity/monster/EntityEnderman;Lnet/minecraft/entity/player/EntityPlayer;)Z");
+                                "(Lnet/minecraft/entity/monster/EntityEnderman;Lnet/minecraft/entity/player/EntityPlayer;)Z", false);
                         this.visitInsn(Opcodes.IRETURN);
                     }
                 };

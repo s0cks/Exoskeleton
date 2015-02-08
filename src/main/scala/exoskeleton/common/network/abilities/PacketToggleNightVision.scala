@@ -9,13 +9,14 @@ import net.minecraft.entity.player.{EntityPlayer, EntityPlayerMP}
 
 class PacketToggleNightVision
 extends IMessage
-with IMessageHandler[PacketToggleNightVision, IMessage]{
-  override def fromBytes(buf: ByteBuf): Unit ={}
-  override def toBytes(buf: ByteBuf): Unit ={}
+with IMessageHandler[PacketToggleNightVision, IMessage] {
+  override def fromBytes(buf: ByteBuf): Unit = {}
 
-  override def onMessage(message: PacketToggleNightVision, ctx: MessageContext): IMessage ={
+  override def toBytes(buf: ByteBuf): Unit = {}
+
+  override def onMessage(message: PacketToggleNightVision, ctx: MessageContext): IMessage = {
     val e = ctx.getServerHandler.playerEntity;
-    if(e != null && e.isInstanceOf[EntityPlayer]){
+    if (e != null && e.isInstanceOf[EntityPlayer]) {
       DataManager.get(e.asInstanceOf[EntityPlayer]).setNightVision(!DataManager.get(e.asInstanceOf[EntityPlayer]).nightVisionEnabled());
       PacketHandler.instance.sendTo(new PacketSyncPlayerData(e.asInstanceOf[EntityPlayer]), e.asInstanceOf[EntityPlayerMP]);
     }

@@ -4,7 +4,7 @@ import cpw.mods.fml.common.event._
 import cpw.mods.fml.common.network.NetworkRegistry
 import cpw.mods.fml.common.{FMLCommonHandler, Mod, SidedProxy}
 import exoskeleton.api.{ExoskeletonAPI, ExoskeletonCores, HeatValue}
-import exoskeleton.client.camo.{CamoNether, CamoDesert, CamoDefault}
+import exoskeleton.client.camo.BasicCamo
 import exoskeleton.common.command.{CommandGiveSkill, CommandRemoveSkill, CommandSetRecall}
 import exoskeleton.common.core._
 import exoskeleton.common.handler._
@@ -95,10 +95,14 @@ object Exoskeleton{
   }
 
   private def registerCamouflages(): Unit ={
-    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.plains, new CamoDefault);
-    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.desert, new CamoDesert);;
-    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.desertHills, new CamoDesert);
-    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.hell, new CamoNether);
+    val camoDesert = new BasicCamo(Blocks.sand);
+    val camoDefault = new BasicCamo(Blocks.stone);
+    val camoNether = new BasicCamo(Blocks.netherrack);
+
+    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.plains,  camoDefault);
+    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.desert, camoDesert);
+    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.desertHills, camoDesert);
+    ExoskeletonAPI.registerActiveCamouflage(BiomeGenBase.hell, camoNether);
   }
 
   private def addHeatMappings(): Unit ={

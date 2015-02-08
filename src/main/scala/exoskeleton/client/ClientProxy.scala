@@ -48,7 +48,8 @@ extends CommonProxy{
     FMLCommonHandler.instance().bus().register(KeyHandler);
     FMLCommonHandler.instance().bus().register(NetworkDataHandler);
 
-    MinecraftForge.EVENT_BUS.register(NightVisionHandler);
+    MinecraftForge.EVENT_BUS.register(ShaderHandler.instance());
+    FMLCommonHandler.instance().bus().register(ShaderHandler.instance());
 
     MinecraftForge.EVENT_BUS.register(ThermalHandler);
     MinecraftForge.EVENT_BUS.register(ThermalHeatMapper.instance());

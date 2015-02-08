@@ -1,5 +1,6 @@
 package exoskeleton.core.transformer;
 
+import exoskeleton.common.Exoskeleton;
 import exoskeleton.core.Method;
 import exoskeleton.core.ObfuscationMappings;
 import net.minecraft.launchwrapper.IClassTransformer;
@@ -16,6 +17,7 @@ implements IClassTransformer{
     @Override
     public byte[] transform(String name, String tName, byte[] bits){
         if(ObfuscationMappings.ENTITY_PLAYER.isOf(name)){
+            Exoskeleton.logger().info("Patching class " + name);
             ClassReader reader = new ClassReader(bits);
             ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES|ClassWriter.COMPUTE_MAXS);
             EntityPlayerVisitor visitor = new EntityPlayerVisitor(writer);
@@ -40,7 +42,7 @@ implements IClassTransformer{
                 return new MethodVisitor(Opcodes.ASM4, visitor){
                     @Override
                     public void visitCode(){
-                        System.out.println("Transforming " + name + " method");
+                        Exoskeleton.logger().info("Transforming " + name + " method");
                         this.visitVarInsn(Opcodes.ALOAD, 0);
                         this.visitMethodInsn(Opcodes.INVOKESTATIC, "exoskeleton/Hooks", "isPushedByWater", "(Lnet/minecraft/entity/player/EntityPlayer;)Z", false);
                         this.visitInsn(Opcodes.IRETURN);

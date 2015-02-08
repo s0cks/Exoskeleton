@@ -39,7 +39,6 @@ object KeyHandler{
         } else if(ArmorHelper.flight(e.player)){
           PacketHandler.instance.sendToServer(new PacketToggleFlight);
         } else if(ArmorHelper.camo(e.player)){
-          System.out.println("Sending Toggle Packet");
           PacketHandler.instance.sendToServer(new PacketToggleCamo);
         }
       }

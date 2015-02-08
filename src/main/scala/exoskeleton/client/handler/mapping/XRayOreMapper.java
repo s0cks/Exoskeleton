@@ -48,7 +48,7 @@ public final class XRayOreMapper{
                 for(int j = y - range; j < y + range; j++){
                     if(ExoskeletonAPI.isXRayable(world.getBlock(i, j, k))){
                         GL11.glPushMatrix();
-                        RenderUtils.renderWireframe(i, j, k, ExoConfiguration.xray_color());
+                        RenderUtils.drawWireframe(i, j, k, ExoConfiguration.xray_color());
                         GL11.glPopMatrix();
                     }
                 }
