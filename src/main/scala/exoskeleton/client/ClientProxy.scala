@@ -3,14 +3,14 @@ package exoskeleton.client
 import cpw.mods.fml.client.FMLClientHandler
 import cpw.mods.fml.client.registry.{ClientRegistry, RenderingRegistry}
 import cpw.mods.fml.common.FMLCommonHandler
-import exoskeleton.client.handler.mapping.{ThermalHeatMapper, XRayOreMapper}
 import exoskeleton.client.handler._
+import exoskeleton.client.handler.mapping.{ThermalHeatMapper, XRayOreMapper}
 import exoskeleton.client.render.item._
 import exoskeleton.client.render.tile.{RenderTileAssembler, RenderTileModifier, RenderTileToolbox}
+import exoskeleton.common.{EXOItems, CommonProxy}
 import exoskeleton.common.block.{BlockAssembler, BlockModifier, BlockToolbox}
 import exoskeleton.common.handler._
 import exoskeleton.common.tile.{TileEntityAssembler, TileEntityModifier, TileEntityToolbox}
-import exoskeleton.common.{CommonProxy, ExoItems}
 import net.minecraft.item.Item
 import net.minecraft.world.World
 import net.minecraftforge.client.MinecraftForgeClient
@@ -38,10 +38,10 @@ extends CommonProxy{
     ClientRegistry.bindTileEntitySpecialRenderer(classOf[TileEntityModifier], modifierR);
     RenderingRegistry.registerBlockHandler(modifierR);
 
-    MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorBoots, new RenderItemExoBoots());
-    MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorChest, new RenderItemExoChest());
-    MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorHelm, new RenderItemExoHelm());
-    MinecraftForgeClient.registerItemRenderer(ExoItems.itemExoArmorLegs, new RenderItemExoLegs());
+    MinecraftForgeClient.registerItemRenderer(EXOItems.itemEXOBoots, new RenderItemExoBoots());
+    MinecraftForgeClient.registerItemRenderer(EXOItems.itemEXOChestplate, new RenderItemExoChest());
+    MinecraftForgeClient.registerItemRenderer(EXOItems.itemEXOHelmet, new RenderItemExoHelm());
+    MinecraftForgeClient.registerItemRenderer(EXOItems.itemEXOLeggings, new RenderItemExoLegs());
   }
 
   override def registerHandlers(): Unit ={

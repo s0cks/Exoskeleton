@@ -17,7 +17,7 @@ implements IClassTransformer{
     @Override
     public byte[] transform(String name, String tName, byte[] bits){
         if(ObfuscationMappings.ENTITY_PLAYER.isOf(name)){
-            Exoskeleton.logger().info("Patching class " + name);
+            Exoskeleton.logger.info("Patching class " + name);
             ClassReader reader = new ClassReader(bits);
             ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES|ClassWriter.COMPUTE_MAXS);
             EntityPlayerVisitor visitor = new EntityPlayerVisitor(writer);
@@ -42,7 +42,7 @@ implements IClassTransformer{
                 return new MethodVisitor(Opcodes.ASM4, visitor){
                     @Override
                     public void visitCode(){
-                        Exoskeleton.logger().info("Transforming " + name + " method");
+                        Exoskeleton.logger.info("Transforming " + name + " method");
                         this.visitVarInsn(Opcodes.ALOAD, 0);
                         this.visitMethodInsn(Opcodes.INVOKESTATIC, "exoskeleton/Hooks", "isPushedByWater", "(Lnet/minecraft/entity/player/EntityPlayer;)Z", false);
                         this.visitInsn(Opcodes.IRETURN);

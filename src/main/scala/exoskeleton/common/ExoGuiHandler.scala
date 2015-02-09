@@ -38,7 +38,7 @@ extends IGuiHandler{
         return new GuiModifier(new ContainerModifier(tile.asInstanceOf[TileEntityModifier], player));
       }
       case 2 =>{
-        return new GuiTest(player, TreeRecon);
+        return new GuiTest(player, tile.asInstanceOf[TileEntityModifier], TreeRecon);
       }
       case 3 =>{
         return new GuiDebug(player);

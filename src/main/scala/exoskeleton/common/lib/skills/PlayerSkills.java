@@ -51,7 +51,7 @@ public final class PlayerSkills{
             }
 
             this.aquired.put(treeComp.getString("name"), skills);
-            Exoskeleton.logger().info("Tree (" + treeComp.getString("name") + ") Loaded " + skills.size() + " skills");
+            Exoskeleton.logger.info("Tree (" + treeComp.getString("name") + ") Loaded " + skills.size() + " skills");
         }
     }
 

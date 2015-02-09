@@ -4,7 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import exoskeleton.api.ExoskeletonAPI;
 import exoskeleton.api.utils.RenderUtils;
-import exoskeleton.common.ExoConfiguration;
+import exoskeleton.common.EXOConfiguration;
 import exoskeleton.common.lib.data.DataManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,7 +48,7 @@ public final class XRayOreMapper{
                 for(int j = y - range; j < y + range; j++){
                     if(ExoskeletonAPI.isXRayable(world.getBlock(i, j, k))){
                         GL11.glPushMatrix();
-                        RenderUtils.drawWireframe(i, j, k, ExoConfiguration.xray_color());
+                        RenderUtils.drawWireframe(i, j, k, EXOConfiguration.xray_color);
                         GL11.glPopMatrix();
                     }
                 }

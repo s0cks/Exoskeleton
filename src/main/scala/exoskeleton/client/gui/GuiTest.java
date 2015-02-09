@@ -3,20 +3,23 @@ package exoskeleton.client.gui;
 import exoskeleton.api.Skill;
 import exoskeleton.api.Tree;
 import exoskeleton.api.utils.RenderUtils;
+import exoskeleton.common.gui.ContainerModifier;
 import exoskeleton.common.lib.skills.PlayerSkills;
 import exoskeleton.common.lib.skills.SkillsManager;
-import net.minecraft.client.gui.GuiScreen;
+import exoskeleton.common.tile.TileEntityModifier;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public class GuiTest
-extends GuiScreen{
+extends GuiContainer{
     public final Tree tree;
     public final EntityPlayer player;
 
-    public GuiTest(EntityPlayer player, Tree tree){
+    public GuiTest(EntityPlayer player, TileEntityModifier modifier, Tree tree){
+        super(new ContainerModifier(modifier, player));
         this.tree = tree;
         this.player = player;
     }
@@ -24,7 +27,6 @@ extends GuiScreen{
     @Override
     public void drawScreen(int x, int y, float par3){
         super.drawScreen(x, y, par3);
-        this.drawDefaultBackground();
         this.drawString(this.mc.fontRenderer, this.tree.name, (this.width - this.fontRendererObj.getStringWidth(this.tree.name)) / 2, 0, 0xFFFFFF);
 
         for(Skill skill : this.tree.skills){
@@ -65,6 +67,11 @@ extends GuiScreen{
             this.drawColoredQuad(0x000000, 255, x + 10, y, width + 10, this.fontRendererObj.FONT_HEIGHT);
             this.fontRendererObj.drawString(str, x + 15, y, 0xFFFFFF);
         }
+    }
+
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_){
+
     }
 
     private boolean canUnlock(Skill s){

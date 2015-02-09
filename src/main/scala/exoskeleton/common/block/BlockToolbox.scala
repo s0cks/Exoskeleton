@@ -31,7 +31,7 @@ extends BlockContainer(Material.iron){
   }
 
   override def onBlockActivated(world: World, x: Int, y: Int, z: Int, player: EntityPlayer, p_149727_6_ : Int, p_149727_7_ : Float, p_149727_8_ : Float, p_149727_9_ : Float): Boolean = {
-    player.openGui(Exoskeleton, 0, world, x, y, z);
+    player.openGui(Exoskeleton.instance, 0, world, x, y, z);
     return true;
   }
 

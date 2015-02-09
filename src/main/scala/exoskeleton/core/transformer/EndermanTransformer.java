@@ -17,7 +17,7 @@ implements IClassTransformer{
     @Override
     public byte[] transform(String name, String tName, byte[] bits){
         if(ObfuscationMappings.ENTITY_ENDERMAN.isOf(name)){
-            Exoskeleton.logger().info("Patching " + name + " class");
+            Exoskeleton.logger.info("Patching " + name + " class");
             ClassReader reader = new ClassReader(bits);
             ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES|ClassWriter.COMPUTE_MAXS);
             EndermanVisitor visitor = new EndermanVisitor(writer);
@@ -43,7 +43,7 @@ implements IClassTransformer{
                 return new MethodVisitor(Opcodes.ASM4, visitor){
                     @Override
                     public void visitCode(){
-                        Exoskeleton.logger().info("Transforming " + name + " method");
+                        Exoskeleton.logger.info("Transforming " + name + " method");
                         this.visitVarInsn(Opcodes.ALOAD, 0);
                         this.visitVarInsn(Opcodes.ALOAD, 1);
                         this.visitMethodInsn(Opcodes.INVOKESTATIC, "exoskeleton/Hooks", "shouldAttackPlayer",

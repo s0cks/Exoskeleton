@@ -18,7 +18,7 @@ extends Block(Material.iron) {
 
     if(stack != null &&
        stack.getItem().isInstanceOf[ItemExoArmor]) {
-      player.openGui(Exoskeleton, 3, world, x, y, z);
+      player.openGui(Exoskeleton.instance, 3, world, x, y, z);
     }
 
     return true;

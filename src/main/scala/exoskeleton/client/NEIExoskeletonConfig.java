@@ -7,7 +7,7 @@ public final class NEIExoskeletonConfig
 implements IConfigureNEI{
     @Override
     public void loadConfig(){
-        Exoskeleton.logger().info("Loading NEI Configuration");
+        Exoskeleton.logger.info("Loading NEI Configuration");
     }
 
     @Override
