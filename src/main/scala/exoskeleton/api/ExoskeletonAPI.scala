@@ -3,6 +3,7 @@ package exoskeleton.api
 import java.util
 
 import com.google.common.eventbus.EventBus
+import exoskeleton.api.abilities.{Camouflage, HeatValue}
 import net.minecraft.block.Block
 import net.minecraft.entity.EntityLiving
 import net.minecraft.item.Item

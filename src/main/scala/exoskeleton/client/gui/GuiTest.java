@@ -1,15 +1,14 @@
 package exoskeleton.client.gui;
 
-import exoskeleton.api.Skill;
-import exoskeleton.api.Tree;
+import exoskeleton.api.skill.Skill;
+import exoskeleton.api.skill.Tree;
 import exoskeleton.api.utils.RenderUtils;
 import exoskeleton.common.gui.ContainerModifier;
-import exoskeleton.common.lib.skills.PlayerSkills;
-import exoskeleton.common.lib.skills.SkillsManager;
 import exoskeleton.common.tile.TileEntityModifier;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
@@ -18,10 +17,23 @@ extends GuiContainer{
     public final Tree tree;
     public final EntityPlayer player;
 
+    public static final ResourceLocation texture = new ResourceLocation("exo", "textures/gui/modifier.png");
+
+    public static final int XSIZE = 208;
+    public static final int YSIZE = 180;
+    public int guiLeft;
+    public int guiTop;
+
     public GuiTest(EntityPlayer player, TileEntityModifier modifier, Tree tree){
         super(new ContainerModifier(modifier, player));
         this.tree = tree;
         this.player = player;
+    }
+
+    @Override
+    public void initGui(){
+        this.guiLeft = (this.width - XSIZE) / 2;
+        this.guiTop = (this.height - YSIZE) / 2;
     }
 
     @Override
@@ -32,16 +44,6 @@ extends GuiContainer{
         for(Skill skill : this.tree.skills){
             if(skill.parents != null){
                 for(Skill s : skill.parents){
-                    if(SkillsManager.unlocked(player, tree, s) && SkillsManager.unlocked(player, tree, skill)){
-                        RenderUtils.bindColor(0xFFFFFF);
-                    } else if(SkillsManager.unlocked(player, tree, s) && !SkillsManager.unlocked(player, tree, skill)){
-                        RenderUtils.bindColor(0xFFFFFF);
-                    } else if(!SkillsManager.unlocked(player, tree, s) && SkillsManager.unlocked(player, tree, skill)){
-                        RenderUtils.bindColor(0xFFFFFF);
-                    } else{
-                        RenderUtils.bindColor(0x000000);
-                    }
-
                     this.drawLine(s.x, s.y, skill.x, skill.y);
                 }
             }
@@ -50,13 +52,9 @@ extends GuiContainer{
         for(Skill skill : this.tree.skills){
             this.mc.renderEngine.bindTexture(tree.marker);
 
-            if(SkillsManager.unlocked(player, tree, skill)){
-                tree.bindColor();
-            } else{
                 RenderUtils.bindColor(0xFF0000);
-            }
 
-            this.drawPoint(skill.x + 100, skill.y + 100);
+            this.drawPoint(skill.x + this.guiLeft + 9, skill.y + this.guiTop + 80);
         }
 
         Skill skill = this.find(x, y);
@@ -71,16 +69,13 @@ extends GuiContainer{
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_){
-
+        this.mc.renderEngine.bindTexture(texture);
+        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, XSIZE, YSIZE);
     }
 
     private boolean canUnlock(Skill s){
         if(s.parents != null){
-            for(Skill skill : s.parents){
-                if(!SkillsManager.unlocked(player, tree, skill)){
-                    return false;
-                }
-            }
+
         }
 
         return true;
@@ -92,8 +87,8 @@ extends GuiContainer{
         GL11.glLineWidth(3);
 
         GL11.glBegin(GL11.GL_LINES);
-        GL11.glVertex3f(108 + x1, 108 + y1, this.zLevel);
-        GL11.glVertex3f(108 + x2, 108 + y2, this.zLevel);
+        GL11.glVertex3f(this.guiLeft + 17 + x1, this.guiTop + 88 + y1, this.zLevel);
+        GL11.glVertex3f(this.guiLeft + 17 + x2, this.guiTop + 88 + y2, this.zLevel);
         GL11.glEnd();
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
@@ -124,15 +119,12 @@ extends GuiContainer{
         super.mouseClicked(x, y, button);
         Skill skill = this.find(x, y);
         if(skill != null && button == 0){
-            if(!SkillsManager.unlocked(player, tree, skill) && canUnlock(skill)){
-                PlayerSkills.get(player).addSkill(tree.name.toLowerCase(), skill.tag);
-            }
         }
     }
 
     private Skill find(int x, int y){
         for(Skill skill : this.tree.skills){
-            if(inBounds(skill.x + 100, skill.y + 100, 16, 16, x, y)){
+            if(inBounds(skill.x + this.guiLeft, skill.y + this.guiTop, 16, 16, x, y)){
                 return skill;
             }
         }

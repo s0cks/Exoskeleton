@@ -1,0 +1,13 @@
+{
+    "blend":{
+        "func":"add",
+        "srcrgb":"one",
+        "dstrgb":"zero"
+    },
+    "vertex":"sobel",
+    "fragment":"thermalvision",
+    "attributes":["Position"],
+    "samplers":[
+        {"name":"DiffuseSampler"}
+    ]
+}

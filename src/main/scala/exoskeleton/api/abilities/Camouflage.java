@@ -1,4 +1,4 @@
-package exoskeleton.api;
+package exoskeleton.api.abilities;
 
 import net.minecraft.entity.player.EntityPlayer;
 

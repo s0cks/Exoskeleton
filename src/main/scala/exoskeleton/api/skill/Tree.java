@@ -1,4 +1,4 @@
-package exoskeleton.api;
+package exoskeleton.api.skill;
 
 import exoskeleton.api.utils.RenderUtils;
 import net.minecraft.util.ResourceLocation;

@@ -1,12 +1,12 @@
 package exoskeleton.common.lib.tree
 
-import exoskeleton.api.{Skill, Tree}
+import exoskeleton.api.skill.{Skill, Tree}
 import net.minecraft.util.ResourceLocation
 
-object TreeRecon
-extends Tree("recon", new ResourceLocation("exo", "textures/ulink_recon.png"), 0xFF0000){
+class TreeRecon
+extends Tree("recon", new ResourceLocation("exo", "textures/ulinkRecon.png"), 0xFF0000){
   val JUMP_BOOST = new Skill(0, 0, "jumpBoost");
-  val NO_DROWN = new Skill(0, 0, "noDrown");
+  val NO_DROWN = new Skill(0, 10, "noDrown", Array(JUMP_BOOST));;
   val BREAST_STROKE = new Skill(0, 0, "breastStroke");
   val SPEEDY_LEGS = new Skill(0, 0, "speedyLegs");
   val STEP_UP = new Skill(0, 0, "stepUp");

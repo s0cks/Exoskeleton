@@ -2,8 +2,9 @@ package exoskeleton.common.core
 
 import java.util
 
+import exoskeleton.api.ExoskeletonAPI
+import exoskeleton.api.skill.Tree
 import exoskeleton.api.utils.Vector3
-import exoskeleton.api.{ExoskeletonAPI, Tree}
 import exoskeleton.common.lib.ArmorHelper
 import exoskeleton.common.lib.tree.TreeMystic
 import net.minecraft.block.Block
@@ -25,7 +26,7 @@ extends AbstractCore("mystic"){
   override def onAttacked(e: LivingAttackEvent, player: EntityPlayer, source: DamageSource): Unit ={}
 
   override def onUpdate(player: EntityPlayer): Unit ={
-    if(ArmorHelper.hasExoChest(player) && hasSkill(player, "magnetMode")){
+    if(ArmorHelper.hasExoChest(player) && hasSkill(ArmorHelper.getChest(player), "magnetMode")){
       val range = 6;
       val x = player.posX;
       val y = player.posY;

@@ -1,12 +1,12 @@
 package exoskeleton.common.item
 
-import exoskeleton.api.Core
+import exoskeleton.api.ICore
 import exoskeleton.common.Exoskeleton
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.item.{Item, ItemStack}
 import net.minecraft.util.IIcon
 
-class ItemCore(val core: Core)
+class ItemCore(val core: ICore)
 extends Item{
   private var icon: IIcon = null;
   private var overlay: IIcon = null;

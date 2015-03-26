@@ -7,10 +7,10 @@ import exoskeleton.client.handler._
 import exoskeleton.client.handler.mapping.{ThermalHeatMapper, XRayOreMapper}
 import exoskeleton.client.render.item._
 import exoskeleton.client.render.tile.{RenderTileAssembler, RenderTileModifier, RenderTileToolbox}
-import exoskeleton.common.{EXOItems, CommonProxy}
 import exoskeleton.common.block.{BlockAssembler, BlockModifier, BlockToolbox}
 import exoskeleton.common.handler._
 import exoskeleton.common.tile.{TileEntityAssembler, TileEntityModifier, TileEntityToolbox}
+import exoskeleton.common.{CommonProxy, EXOItems}
 import net.minecraft.item.Item
 import net.minecraft.world.World
 import net.minecraftforge.client.MinecraftForgeClient

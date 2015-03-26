@@ -2,8 +2,8 @@ package exoskeleton.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import exoskeleton.api.Core;
 import exoskeleton.api.ExoskeletonCores;
+import exoskeleton.api.ICore;
 import exoskeleton.common.core.CoreAssassin$;
 import exoskeleton.common.core.CoreBulldozer$;
 import exoskeleton.common.core.CoreGhost$;
@@ -45,7 +45,7 @@ extends GuiScreen{
             return;
         }
 
-        Core core = ExoskeletonCores.findCore(stack);
+        ICore core = ExoskeletonCores.findCore(stack);
 
         if(core != null){
             return;

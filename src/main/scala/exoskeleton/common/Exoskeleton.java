@@ -12,9 +12,9 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import exoskeleton.api.Camouflage;
 import exoskeleton.api.ExoskeletonAPI;
 import exoskeleton.api.ExoskeletonCores;
+import exoskeleton.api.abilities.Camouflage;
 import exoskeleton.client.camo.BasicCamo;
 import exoskeleton.common.command.CommandGiveSkill;
 import exoskeleton.common.command.CommandRemoveSkill;
@@ -112,7 +112,7 @@ public final class Exoskeleton{
         this.registerCamouflages();
         this.registerOreXRays();
 
-        NetworkRegistry.INSTANCE.registerGuiHandler(Exoskeleton.instance, ExoGuiHandler$.MODULE$);
+        NetworkRegistry.INSTANCE.registerGuiHandler(Exoskeleton.instance, new EXOGuiHandler());
 
         PacketHandler.init();
     }

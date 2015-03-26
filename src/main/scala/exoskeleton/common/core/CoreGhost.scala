@@ -2,7 +2,7 @@ package exoskeleton.common.core
 
 import java.util.Random
 
-import exoskeleton.api.Tree
+import exoskeleton.api.skill.Tree
 import exoskeleton.common.lib.ArmorHelper
 import exoskeleton.common.lib.tree.TreeGhost
 import net.minecraft.block.Block
@@ -26,7 +26,7 @@ extends AbstractCore("ghost"){
   }
 
   override def onUpdate(player: EntityPlayer): Unit ={
-    if(hasSkill(player, "crouchingTiger") && ArmorHelper.hasExoBoots(player)){
+    if(hasSkill(ArmorHelper.getBoots(player), "crouchingTiger") && ArmorHelper.hasExoBoots(player)){
       if(player.isSneaking && player.onGround && player.moveForward > 0.0F){
         player.moveFlying(0.0F, 1.0F, 0.035F * 2);
       }

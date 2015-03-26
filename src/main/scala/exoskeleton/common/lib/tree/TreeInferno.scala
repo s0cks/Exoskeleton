@@ -1,6 +1,6 @@
 package exoskeleton.common.lib.tree
 
-import exoskeleton.api.{Skill, Tree}
+import exoskeleton.api.skill.{Skill, Tree}
 import net.minecraft.util.ResourceLocation
 
 object TreeInferno

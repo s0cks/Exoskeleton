@@ -3,7 +3,7 @@ package exoskeleton.client.handler.mapping;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import exoskeleton.api.ExoskeletonAPI;
-import exoskeleton.api.HeatValue;
+import exoskeleton.api.abilities.HeatValue;
 import exoskeleton.api.utils.RenderUtils;
 import exoskeleton.common.lib.data.DataManager;
 import net.minecraft.entity.Entity;

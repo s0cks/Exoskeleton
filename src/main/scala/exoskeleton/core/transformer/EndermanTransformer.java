@@ -10,7 +10,7 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-public class EndermanTransformer
+public final class EndermanTransformer
 implements IClassTransformer{
     private final Method method = new Method("shouldAttackPlayer", "f");
 

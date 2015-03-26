@@ -1,12 +1,12 @@
 package exoskeleton.client.overlay
 
-import exoskeleton.api.Overlay
+import exoskeleton.api.abilities.IOverlay
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.Tessellator
 import org.lwjgl.opengl.GL11
 
 class AssassinOverlay
-extends Overlay{
+extends IOverlay{
   private var assassin: Integer = null;
 
   override def draw(minecraft: Minecraft): Unit ={

@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShaderHandler{
+public final class ShaderHandler{
     private boolean resetShaders;
     private int oldDisplayWidth;
     private int oldDisplayHeight;
@@ -25,9 +25,11 @@ public class ShaderHandler{
     private static final Map<Integer, ShaderGroup> shaders = new HashMap<Integer, ShaderGroup>();
 
     private static final int SHADER_NIGHTVISION = 0x0;
+    private static final int SHADER_THERMALVISION = 0x1;
 
     private static final ResourceLocation[] shader_resources = {
-            new ResourceLocation("exo", "shaders/nightvision.json"),
+            new ResourceLocation("shaders/post/nightvision.json"),
+            new ResourceLocation("shaders/post/thermalvision.json")
     };
 
     private static ShaderHandler instance;
@@ -77,6 +79,16 @@ public class ShaderHandler{
             }
         } else{
             deactivateShader(SHADER_NIGHTVISION);
+        }
+
+        if(DataManager.get(ev.player).thermal()){
+            try{
+                setShader(new ShaderGroup(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), shader_resources[SHADER_THERMALVISION]), SHADER_THERMALVISION);
+            } catch(Exception e){
+                e.printStackTrace(System.err);
+            }
+        } else{
+            deactivateShader(SHADER_THERMALVISION);
         }
     }
 

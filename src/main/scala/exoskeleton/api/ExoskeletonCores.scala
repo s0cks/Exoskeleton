@@ -3,21 +3,22 @@ package exoskeleton.api
 import java.util
 
 import cpw.mods.fml.common.registry.GameRegistry
+import exoskeleton.api.skill.Tree
 import exoskeleton.common.item.ItemCore
 import net.minecraft.item.ItemStack
 
 import scala.collection.JavaConversions._
 
 object ExoskeletonCores{
-  private val cores: util.List[Core] = new util.LinkedList[Core]();
-  private val items = new util.HashMap[Core, ItemStack]();
+  private val cores: util.List[ICore] = new util.LinkedList[ICore]();
+  private val items = new util.HashMap[ICore, ItemStack]();
 
   def registerItems(): Unit ={
-    for(c: Core <- this.cores){
+    for(c: ICore <- this.cores){
       val item = new ItemCore(c);
       val stack = new ItemStack(item);
 
-      GameRegistry.registerItem(item, "itemCore_" + c.getID());
+      GameRegistry.registerItem(item, "itemICore_" + c.getID());
 
       items.put(c, stack);
     }
@@ -28,16 +29,16 @@ object ExoskeletonCores{
     return this.items.get(c).copy();
   }
 
-  def getItemByCore(c: Core): ItemStack={
+  def getItemByCore(c: ICore): ItemStack={
     return this.items.get(c).copy();
   }
 
-  def registerCore(c: Core): Unit ={
+  def registerCore(c: ICore): Unit ={
     this.cores.add(c);
   }
 
-  def getByName(n: String): Core={
-    for(c: Core <- this.cores){
+  def getByName(n: String): ICore={
+    for(c: ICore <- this.cores){
       if(c.getID().equalsIgnoreCase(n)){
         return c;
       }
@@ -46,7 +47,7 @@ object ExoskeletonCores{
     return null;
   }
 
-  def findCore(stack: ItemStack): Core={
+  def findCore(stack: ItemStack): ICore={
     if(stack.hasTagCompound() &&
        stack.getTagCompound.hasKey(ExoskeletonTag.IDENTIFIER)){
 
@@ -60,7 +61,7 @@ object ExoskeletonCores{
     return this.findCore(stack) != null;
   }
 
-  def installCore(stack: ItemStack, core: Core): Unit ={
+  def installCore(stack: ItemStack, core: ICore): Unit ={
     val comp = ExoskeletonTag.getTag(stack);
     comp.setString("coreName", core.getID());
   }

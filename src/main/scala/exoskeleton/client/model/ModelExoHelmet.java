@@ -7,7 +7,7 @@ import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
-public class ModelExoHelmet
+public final class ModelExoHelmet
 extends ModelBiped{
     private final IModelCustom model;
 

@@ -1,6 +1,6 @@
 package exoskeleton.common.core
 
-import exoskeleton.api.Tree
+import exoskeleton.api.skill.Tree
 import exoskeleton.common.lib.tree.TreeAssassin
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer

@@ -1,6 +1,6 @@
 package exoskeleton.common.core
 
-import exoskeleton.api.Tree
+import exoskeleton.api.skill.Tree
 import exoskeleton.client.MotorBlock
 import exoskeleton.common.lib.ArmorHelper
 import exoskeleton.common.lib.data.DataManager
@@ -48,7 +48,7 @@ extends AbstractCore("skybound"){
   }
 
   override def onJump(player: EntityPlayer): Unit ={
-    if(hasSkill(player, "thrusters") && ArmorHelper.hasExoBoots(player)){
+    if(hasSkill(ArmorHelper.getBoots(player), "thrusters") && ArmorHelper.hasExoBoots(player)){
       player.motionY += 0.2D;
     }
   }

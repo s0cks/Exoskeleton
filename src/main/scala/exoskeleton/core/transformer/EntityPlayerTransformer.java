@@ -10,7 +10,7 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-public class EntityPlayerTransformer
+public final class EntityPlayerTransformer
 implements IClassTransformer{
     private static final Method method = new Method("isPushedByWater", "aC");
 

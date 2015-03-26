@@ -2,7 +2,7 @@ package exoskeleton.common.core
 
 import java.util.Random
 
-import exoskeleton.api.Tree
+import exoskeleton.api.skill.Tree
 import exoskeleton.common.lib.tree.TreeReflex
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer

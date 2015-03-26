@@ -1,6 +1,5 @@
 package exoskeleton.common.command
 
-import exoskeleton.common.lib.skills.PlayerSkills
 import exoskeleton.common.network.PacketHandler
 import exoskeleton.common.network.sync.PacketSyncSkills
 import net.minecraft.command.{CommandBase, ICommandSender}
@@ -21,7 +20,6 @@ class CommandRemoveSkill
     val skill: String = args(1);
 
     if(sender.isInstanceOf[EntityPlayer]){
-      PlayerSkills.get(sender.asInstanceOf[EntityPlayer]).removeSkill(tree, skill);
       PacketHandler.instance.sendTo(new PacketSyncSkills(sender.asInstanceOf[EntityPlayer]), sender.asInstanceOf[EntityPlayerMP]);
     }
   }

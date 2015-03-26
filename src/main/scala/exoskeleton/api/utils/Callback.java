@@ -1,4 +1,4 @@
-package exoskeleton.api;
+package exoskeleton.api.utils;
 
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 

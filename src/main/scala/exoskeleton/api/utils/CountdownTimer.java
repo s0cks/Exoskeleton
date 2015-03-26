@@ -3,7 +3,6 @@ package exoskeleton.api.utils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import exoskeleton.api.Callback;
 
 public class CountdownTimer{
     private final int max;

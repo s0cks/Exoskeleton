@@ -1,6 +1,7 @@
 package exoskeleton.common.item
 
-import exoskeleton.api.{ExoskeletonTag, Toolbox}
+import exoskeleton.api.ExoskeletonTag
+import exoskeleton.api.item.IToolbox
 import exoskeleton.common.Exoskeleton
 import net.minecraft.block.Block
 import net.minecraft.item.{ItemBlock, ItemStack}
@@ -8,7 +9,7 @@ import net.minecraft.nbt.{NBTTagCompound, NBTTagList}
 
 class ItemToolbox(b: Block)
 extends ItemBlock(b)
-with Toolbox{
+with IToolbox{
   this.setCreativeTab(Exoskeleton.tab);
   this.setUnlocalizedName("toolbox");
 

@@ -2,7 +2,7 @@ package exoskeleton.common.block
 
 import java.util.Random
 
-import exoskeleton.api.Toolbox
+import exoskeleton.api.item.IToolbox
 import exoskeleton.common.Exoskeleton
 import exoskeleton.common.lib.RotationHelper
 import exoskeleton.common.tile.TileEntityToolbox
@@ -37,7 +37,7 @@ extends BlockContainer(Material.iron){
 
   override def onBlockPlacedBy(world: World, x: Int, y: Int, z: Int, living: EntityLivingBase, stack: ItemStack): Unit ={
     val tile: TileEntityToolbox = world.getTileEntity(x, y, z).asInstanceOf[TileEntityToolbox];
-    val tbox: Toolbox = stack.getItem().asInstanceOf[Toolbox];
+    val tbox: IToolbox = stack.getItem().asInstanceOf[IToolbox];
     tile.inventory = tbox.getInventory(stack);
     tile.rotation = RotationHelper.get3DRotation(living);
   }
@@ -61,7 +61,7 @@ extends BlockContainer(Material.iron){
   override def getPickBlock(t: MovingObjectPosition, world: World, x: Int, y: Int, z: Int): ItemStack={
     val tile: TileEntityToolbox = world.getTileEntity(x, y, z).asInstanceOf[TileEntityToolbox];
     val stack: ItemStack = new ItemStack(BlockToolbox);
-    val tbox: Toolbox = stack.getItem().asInstanceOf[Toolbox];
+    val tbox: IToolbox = stack.getItem().asInstanceOf[IToolbox];
 
     if(tile.inventory != null){
       tbox.setInventory(stack, tile.inventory);

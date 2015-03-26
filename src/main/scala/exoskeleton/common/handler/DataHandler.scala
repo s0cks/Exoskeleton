@@ -6,7 +6,6 @@ import cpw.mods.fml.common.gameevent.{PlayerEvent => PEvent}
 import cpw.mods.fml.relauncher.Side
 import exoskeleton.common.Exoskeleton
 import exoskeleton.common.lib.data.DataManager
-import exoskeleton.common.lib.skills.SkillsManager
 import exoskeleton.common.network.PacketHandler
 import exoskeleton.common.network.sync.{PacketSyncPlayerData, PacketSyncSkills}
 import net.minecraft.entity.player.EntityPlayerMP
@@ -17,14 +16,12 @@ object DataHandler{
   def onPlayerLoad(e: PlayerEvent.LoadFromFile): Unit ={
     Exoskeleton.logger.info("Loading Player Data (" + e.entityPlayer.getCommandSenderName + ")");
     DataManager.getPlayerData(e.entityPlayer);
-    SkillsManager.getPlayerData(e.entityPlayer);
   }
 
   @SubscribeEvent
   def onPlayerSave(e: PlayerEvent.SaveToFile): Unit ={
     Exoskeleton.logger.info("Saving Player Data (" + e.entityPlayer.getCommandSenderName + ")");
     DataManager.savePlayerData(e.entityPlayer);
-    SkillsManager.savePlayerData(e.entityPlayer);
   }
 
   @SubscribeEvent

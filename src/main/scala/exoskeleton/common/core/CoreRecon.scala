@@ -1,8 +1,7 @@
 package exoskeleton.common.core
 
-import exoskeleton.api.Tree
+import exoskeleton.api.skill.Tree
 import exoskeleton.common.lib.ArmorHelper
-import exoskeleton.common.lib.skills.PlayerSkills
 import exoskeleton.common.lib.tree.TreeRecon
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
@@ -14,17 +13,17 @@ import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent
 object CoreRecon
 extends AbstractCore("recon"){
   override def onJump(player: EntityPlayer): Unit ={
-    if(PlayerSkills.get(player).hasSkill("recon", "jumpBoost") && ArmorHelper.hasExoLegs(player)){
+    if(hasSkill(ArmorHelper.getLeggings(player), "jumpBoost") && ArmorHelper.hasExoLegs(player)){
       player.motionY += 0.04;;
     }
   }
 
   override def getTree(): Tree={
-    return TreeRecon;;
+    return new TreeRecon();
   }
 
   override def onAttacked(e: LivingAttackEvent, player: EntityPlayer, source: DamageSource): Unit ={
-    if(hasSkill(player, "noDrown") && ArmorHelper.hasExoHelm(player)){
+    if(hasSkill(ArmorHelper.getHelmet(player), "noDrown") && ArmorHelper.hasExoHelm(player)){
       if(e.source == DamageSource.drown){
         e.setCanceled(true);
       }
@@ -32,17 +31,17 @@ extends AbstractCore("recon"){
   }
 
   override def onUpdate(player: EntityPlayer): Unit ={
-    if(hasSkill(player, "breastStroke") && ArmorHelper.hasExoChest(player)){
+    if(hasSkill(ArmorHelper.getChest(player), "breastStroke") && ArmorHelper.hasExoChest(player)){
       if(player.isInsideOfMaterial(Material.water) && player.moveForward > 0.0F){
         player.moveFlying(0.0F, 1.0F, 0.008F * 2);
       }
     }
 
-    if(hasSkill(player, "speedyLegs") && ArmorHelper.hasExoLegs(player) && player.moveForward > 0.0F && player.onGround){
+    if(hasSkill(ArmorHelper.getLeggings(player), "speedyLegs") && ArmorHelper.hasExoLegs(player) && player.moveForward > 0.0F && player.onGround){
       player.moveFlying(0.0F, 1.0F, 0.016F * 2);
     }
 
-    if(hasSkill(player, "stepUp") && ArmorHelper.hasExoBoots(player)){
+    if(hasSkill(ArmorHelper.getBoots(player), "stepUp") && ArmorHelper.hasExoBoots(player)){
       if(player.isSneaking()){
         player.stepHeight = 0.50001F;
       } else if(player.stepHeight == 0.50001F){

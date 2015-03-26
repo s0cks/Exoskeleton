@@ -1,6 +1,6 @@
 package exoskeleton.client.camo
 
-import exoskeleton.api.Camouflage
+import exoskeleton.api.abilities.Camouflage
 import exoskeleton.api.utils.RenderUtils
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer

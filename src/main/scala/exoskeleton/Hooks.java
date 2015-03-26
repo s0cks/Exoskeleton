@@ -1,9 +1,9 @@
 package exoskeleton;
 
 import exoskeleton.api.ExoskeletonCores;
+import exoskeleton.api.SkillsHelper;
 import exoskeleton.common.core.CoreReflex$;
 import exoskeleton.common.lib.ArmorHelper;
-import exoskeleton.common.lib.skills.PlayerSkills;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -11,13 +11,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 
-public class Hooks{
+public final class Hooks{
     public static boolean shouldAttackPlayer(EntityEnderman enderman, EntityPlayer player){
         ItemStack itemstack = player.inventory.armorInventory[3];
 
         if (itemstack != null && itemstack.getItem() == Item.getItemFromBlock(Blocks.pumpkin)){
             return false;
-        } else if(itemstack != null && ExoskeletonCores.findCore(itemstack) == CoreReflex$.MODULE$ && PlayerSkills.get(player).hasSkill("reflex", "noEnderman")){
+        } else if(itemstack != null && ExoskeletonCores.findCore(itemstack) == CoreReflex$.MODULE$ && SkillsHelper.hasSkill(itemstack, "recon", "noEnderman")){
             return false;
         } else {
             Vec3 vec3 = player.getLook(1.0F).normalize();
@@ -30,7 +30,7 @@ public class Hooks{
     }
 
     public static boolean isPushedByWater(EntityPlayer entity){
-        if(PlayerSkills.get(entity).hasSkill("recon", "sturdy") && ArmorHelper.hasExoLegs(entity)){
+        if(SkillsHelper.hasSkill(ArmorHelper.getLeggings((EntityPlayer) entity), "recon", "study") && ArmorHelper.hasExoLegs(entity)){
             return false;
         }
 

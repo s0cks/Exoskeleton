@@ -1,4 +1,4 @@
-package exoskeleton.api;
+package exoskeleton.api.skill;
 
 public class Skill{
     public final int x;

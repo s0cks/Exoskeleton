@@ -1,4 +1,4 @@
 package exoskeleton.client.model;
 
-public class ModelExoLeggings{
+public final class ModelExoLeggings{
 }

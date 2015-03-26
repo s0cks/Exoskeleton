@@ -1,6 +1,6 @@
 package exoskeleton.common.lib.tree
 
-import exoskeleton.api.Tree
+import exoskeleton.api.skill.Tree
 import net.minecraft.util.ResourceLocation
 
 object TreeFrost

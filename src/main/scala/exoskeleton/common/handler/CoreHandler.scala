@@ -1,7 +1,7 @@
 package exoskeleton.common.handler
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
-import exoskeleton.api.{Core, ExoskeletonCores}
+import exoskeleton.api.{ExoskeletonCores, ICore}
 import exoskeleton.common.item.ItemExoArmor
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -37,7 +37,7 @@ object CoreHandler{
       if (stack != null &&
         stack.getItem().isInstanceOf[ItemExoArmor]) {
 
-        val core: Core = ExoskeletonCores.findCore(stack);
+        val core: ICore = ExoskeletonCores.findCore(stack);
         if(core != null){
           e.newSpeed = core.getBreakSpeedModifier(e.entityPlayer, e.block, e.metadata, e.originalSpeed);
         }
@@ -56,7 +56,7 @@ object CoreHandler{
         if (stack != null &&
           stack.getItem().isInstanceOf[ItemExoArmor]) {
 
-          val core: Core = ExoskeletonCores.findCore(stack);
+          val core: ICore = ExoskeletonCores.findCore(stack);
           if(core != null){
             core.onUpdate(player);
           }
@@ -76,7 +76,7 @@ object CoreHandler{
         if(stack != null &&
           stack.getItem().isInstanceOf[ItemExoArmor]) {
 
-          val core: Core = ExoskeletonCores.findCore(stack);
+          val core: ICore = ExoskeletonCores.findCore(stack);
           if(core != null){
             core.onAttacked(e, player, e.source);
           }
@@ -96,7 +96,7 @@ object CoreHandler{
         if(stack != null &&
           stack.getItem().isInstanceOf[ItemExoArmor]){
 
-          val core: Core = ExoskeletonCores.findCore(stack);
+          val core: ICore = ExoskeletonCores.findCore(stack);
           if(core != null){
             core.onJump(player);
           }

@@ -1,4 +1,4 @@
-package exoskeleton.api;
+package exoskeleton.api.abilities;
 
 import exoskeleton.api.utils.RenderUtils;
 import net.minecraft.util.StatCollector;

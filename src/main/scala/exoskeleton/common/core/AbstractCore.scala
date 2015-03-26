@@ -1,12 +1,11 @@
 package exoskeleton.common.core
 
-import exoskeleton.api.Core
 import exoskeleton.api.utils.OverlaySet
-import exoskeleton.common.lib.skills.PlayerSkills
-import net.minecraft.entity.player.EntityPlayer
+import exoskeleton.api.{ICore, SkillsHelper}
+import net.minecraft.item.ItemStack
 
 abstract class AbstractCore(val id: String)
-extends Core{
+extends ICore{
   private val overlays = new OverlaySet(
     "textures/items/overlay/" + this.id + "_helmet.png",
     "textures/items/overlay/" + this.id + "_chest.png",
@@ -19,12 +18,8 @@ extends Core{
     return this.id;
   }
 
-  protected def hasSkill(player: EntityPlayer, skill: String): Boolean={
-    if(PlayerSkills.get(player) == null){
-      return false;
-    }
-
-    return PlayerSkills.get(player).hasSkill(this.getID(), skill);
+  protected def hasSkill(stack: ItemStack, skill: String): Boolean={
+    return SkillsHelper.hasSkill(stack, this.id, skill);
   }
 
   override def overlay(): OverlaySet={
